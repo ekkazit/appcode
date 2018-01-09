@@ -114,6 +114,7 @@ section .container h1 {
 }
 
 #course .tags li {
+  padding: 2px 0;
   display: inline-block;
 }
 
@@ -227,7 +228,7 @@ section .container h1 {
 }
 
 .online .preview {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .online .footer {

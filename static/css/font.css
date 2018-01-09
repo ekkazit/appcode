@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'csprakas';
+  font-style: normal;
+  src: url("./fonts/CSPraKas.otf") format('opentype');
+  unicode-range: U+0E00-U+0E7F;
+}
+@font-face {
+  font-family: 'csprakasfd';
+  font-style: normal;
+  src: url("./fonts/CSPraKasFD.otf") format('opentype');
+  unicode-range: U+0E00-U+0E7F;
+}
