@@ -25,8 +25,8 @@
               <h3><a href="{% url 'course:detail' slug=c.slug %}">{{ c.name }}</a></h3>
               <div class="subtext">
                 <div class="pull-left">
-                  <span><strong>รหัส</strong> {{ c.code }}</span>
-                  <span><strong>ระยะเวลา</strong> {{ c.code }}</span>
+                  <span><strong>รหัส:</strong> {{ c.code }}</span>
+                  <span><strong>ระยะเวลา:</strong> {{ c.hours }} ชั่วโมง ({{ c.days }} วัน)</span>
                 </div>
                 <div class="pricing">
                   <strong>{{ c.price|floatformat:0|intcomma }} ฿</strong>

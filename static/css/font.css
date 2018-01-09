@@ -1,12 +1,18 @@
 @font-face {
-  font-family: 'csprakas';
-  font-style: normal;
-  src: url("./fonts/CSPraKas.otf") format('opentype');
-  unicode-range: U+0E00-U+0E7F;
-}
+  font-family: 'rsu_regular';
+  src: url('./fonts/RSU/rsu_regular-webfont.eot');
+  src: url('./fonts/RSU/rsu_regular-webfont.eot?#iefix') format('embedded-opentype'), url('./fonts/RSU/rsu_regular-webfont.woff') format('woff'), url('./fonts/RSU/rsu_regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; }
 @font-face {
-  font-family: 'csprakasfd';
-  font-style: normal;
-  src: url("./fonts/CSPraKasFD.otf") format('opentype');
-  unicode-range: U+0E00-U+0E7F;
-}
+  font-family: 'rsu_light';
+  src: url('./fonts/RSU/rsu_light-webfont.eot');
+  src: url('./fonts/RSU/rsu_light-webfont.eot?#iefix') format('embedded-opentype'), url('./fonts/RSU/rsu_light-webfont.woff') format('woff'), url('./fonts/RSU/rsu_light-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'rsu_bold';
+  src: url('./fonts/RSU/rsu_bold-webfont.eot');
+  src: url('./fonts/RSU/rsu_bold-webfont.eot?#iefix') format('embedded-opentype'), url('./fonts/RSU/rsu_bold-webfont.woff') format('woff'), url('./fonts/RSU/rsu_bold-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; }
