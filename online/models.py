@@ -11,10 +11,11 @@ class Video(models.Model):
     title = models.CharField(max_length=150, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     category = models.ForeignKey(Category, null=True, blank=True)
-    teacher = models.ForeignKey(Teacher, null=True, blank=True)
+    teachers = models.ManyToManyField(Teacher, blank=True)
     lessons = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=15, decimal_places=2, default=0)
     image = models.FileField(upload_to='images/video', null=True, blank=True)
+    premium = models.BooleanField(default=False)
     published = models.BooleanField(default=True)
     tags = TaggableManager()
 

@@ -184,3 +184,85 @@ section .container h1 {
   border: 2px solid #ccc;
   margin-right: 15px;
 }
+
+/**/
+.online {
+  background-color: #fff;
+  box-shadow: 0 1px 2px #ddd;
+  margin-bottom: 40px;
+}
+
+.online .image {
+  overflow: hidden;
+  position: relative;
+}
+
+.online .image img {
+  width: 100%;
+}
+
+.online .image .label {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 1000;
+  border-radius: 0 !important;
+}
+
+.online h4 {
+  line-height: 22px;
+}
+
+.online h4 a {
+  color: #555;
+  text-decoration: none;
+}
+
+.online h4 a:hover {
+  color: #d40c0c;
+}
+
+.online .content {
+  padding: 5px 10px 10px 10px;
+}
+
+.online .preview {
+  margin-bottom: 30px;
+}
+
+.online .footer {
+  width: 100%;
+  clear: both;
+  display: inline-block;
+  line-height: 32px;
+  margin-top: 10px;
+}
+
+.online .footer .pricing {
+  float: right;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.online .footer .price-green {
+  color: #008000;
+}
+
+.online .footer .price-red {
+  color: #c30;
+}
+
+.online a.video {
+  float: left;
+  position: relative;
+}
+
+.online a.video span {
+  opacity: 0.9;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: url("/static/img/icons/play-btn.png") no-repeat;
+  background-position: 50% 50%;
+  background-size: 200%;
+}

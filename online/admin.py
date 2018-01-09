@@ -14,7 +14,7 @@ class VideoPlaylistInline(admin.TabularInline):
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ['code', 'name', 'category', 'teacher', 'lessons', 'price', 'published']
+    list_display = ['code', 'name', 'category', 'lessons', 'price', 'published']
     search_fields = ['code', 'name']
     inlines = [VideoOptionInline, VideoPlaylistInline]
 

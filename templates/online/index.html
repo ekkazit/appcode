@@ -1,1 +1,46 @@
 {% extends "master/base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="subnav">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+      <li class="active">คอร์สออนไลน์</li>
+    </ul>
+  </div>
+</div>
+<section>
+  <div class="container">
+    <h1>คอร์สออนไลน์ทั้งหมด</h1>
+    {% for v in videos %}
+      {% if forloop.first %}<div class="row">{% endif %}
+      <div class="col-md-3">
+        <div class="online">
+          <div class="image">
+            {% if v.premium %}
+              <span class="label label-warning">Premium</span>
+            {% endif %}
+            {% if v.image %}
+              <img src="{{ v.image.url }}" alt="{{ v.name }}">
+            {% endif %}
+          </div>
+          <div class="content">
+            <h4><a href="{% url 'online:detail' slug=v.slug %}">{{ v.name }}</a></h4>
+            <div class="preview">{{ v.title }}</div>
+            <span><i class="fa fa-book"></i> {{ v.lessons }} บทเรียน</span>
+            <div class="footer">
+              <a href="{% url 'online:detail' slug=v.slug %}" class="btn btn-success pull-left">เข้าสู่บทเรียน</a>
+              <span class="pricing {% if v.price > 0 %}price-green{% else%}price-red{% endif %}">
+                {% if v.price > 0 %}{{ v.price|floatformat:0|intcomma }} ฿{% else %}เรียนฟรี{% endif %}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+      {% if forloop.last %}</div>{% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
