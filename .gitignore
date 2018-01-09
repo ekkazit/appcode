@@ -1,0 +1,9 @@
+*.pyc
+*.egg
+*.sqlite3
+*.log
+.idea
+.vscode
+logs
+temp
+upload

@@ -1,0 +1,163 @@
+{% extends "master/base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="subnav">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+      <li><a href="{% url 'course:index' %}">หลักสูตรอบรม</a></li>
+      <li class="active">{{ course.code }}</li>
+    </ul>
+  </div>
+</div>
+<section id="course">
+  <div class="container">
+    <h1>{{ course.name }}</h1>
+    <div class="row">
+      <div class="col-md-8">
+        {% if course.title %}
+        <span><i class="fa fa-quote-left"></i> {{ course.title }}</span>
+        <div style="margin:20px 0 40px 0">
+          <a href="#" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> ดาวน์โหลดเป็น PDF</a>
+        </div>
+        {% endif %}
+        <!-- ./ course title -->
+      </div>
+      <div class="col-md-4">
+        {% if course.image %}
+        <div class="image">
+          <img src="{{ course.image.url }}" alt="{{ course.name }}" class="img-responsive">
+        </div>
+        {% endif %}
+        <!-- ./ course image -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        {% if course.content %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <strong>รายละเอียดหลักสูตร</strong>
+            </div>
+          </div>
+          <div class="panel-body">
+            {{ course.content|safe }}
+          </div>
+        </div>
+        {% endif %}
+        <!-- ./ course content -->
+        {% if accounts|length %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <strong>การชำระเงิน</strong>
+            </div>
+          </div>
+          <div class="panel-body">
+            <ul class="bank-list">
+              {% for b in accounts %}
+              <li>
+                {% if b.image %}<img src="{{ b.image.url }}" alt="{{ b.bank }}">{% endif %}
+                <span>{{ b.bank }} สาขา{{ b.branch }} บัญชี <strong>{{ b.acc_code }}</strong> {{ b.type }} {{ b.acc_name }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+        <!-- ./ course payment accounts -->
+      </div>
+      <div class="col-md-4">
+        {% if course.promotion %}
+        <div class="well">
+          <strong>{{ course.promotion }}</strong>
+        </div>
+        {% endif %}
+        <!-- ./ course promotion -->
+        <div class="pricing">
+          <h3>ราคา {{ course.price|floatformat:0|intcomma }} บาท</h3>
+          <div class="price-tax">( ราคานี้ยังไม่รวมภาษีมูลค่าเพิ่ม )</div>
+        </div>
+        <!-- ./ course pricing -->
+        <!--
+        <div class="form-group">
+          <h3>ลงทะเบียน</h3>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-calendar"></i> รอบที่ 1 วันที่ 22-26 มค.</a>
+              <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-calendar"></i> รอบที่ 2 วันที่ 30-31 มค.</a>
+            </div>
+          </div>
+        </div> -->
+        <div class="form-group">
+          <h3>หลักสูตรนี้ยังไม่เปิดอบรม</h3>
+        </div>
+        <a href="#" class="btn btn-primary btn-lg btn-block">สมัครเรียนคอร์สนี้</a>
+        <a href="#" class="btn btn-warning btn-lg btn-block"><i class="fa fa-copy"></i> ขอใบเสนอราคา</a>
+        <!-- ./ course booking / registration or quotations -->
+        {% if course.courseoption_set.count %}
+        <div class="form-group">
+          <h3>สิ่งที่เราเตรียมให้</h3>
+          <ul class="check-list">
+            {% for o in course.courseoption_set.all %}
+            <li><i class="fa fa-check"></i> {{ o.option }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <!-- ./ course options -->
+        {% if course.teachers.count %}
+        <div class="form-group">
+          <h3>อาจารย์ผู้สอน</h3>
+          {% for t in course.teachers.all %}
+          <div class="profile">
+            <img src="{{ t.image.url }}" alt="{{ t.name }}">
+            <div class="profile-item">
+              <h4>{{ t.fullname }}</h4>
+              <div class="caption">{{ t.position }}</div>
+              <a href="#">ดูโปรไฟล์แบบเต็ม</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <!-- ./ course teacher -->
+        {% if related_courses|length %}
+        <div class="form-group">
+          <h3>คอร์สที่เกี่ยวข้อง</h3>
+          <ul class="course-link">
+            {% for r in related_courses %}
+            <li>
+              <a href="{% url 'course:detail' slug=r.slug %}">
+                <img src="{{ r.image.url }}" alt="{{ r.name }}">
+                <div class="item">
+                  <strong>{{ r.name }}</strong>
+                  <div class="subtext">
+                    <span>ระยะเวลา {{ r.hours }} ชั่วโมง ({{ r.days }} วัน) / <strong>{{ r.price|floatformat:0|intcomma }} ฿</strong></span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <!-- ./ course related -->
+        {% if course.tags.count %}
+        <div class="form-group">
+          <h3>ป้ายกำกับ</h3>
+          <ul class="tags">
+            {% for t in course.tags.all %}
+            <li><a href="#">{{ t.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <!-- ./ course tags list -->
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

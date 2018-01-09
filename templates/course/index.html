@@ -1,0 +1,55 @@
+{% extends "master/base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="subnav">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+      <li class="active">หลักสูตรอบรม</li>
+    </ul>
+  </div>
+</div>
+<section>
+  <div class="container">
+    <h1>หลักสูตรอบรม</h1>
+    <div class="row">
+      <div class="col-md-9">
+        {% for c in courses %}
+        <div class="course-list">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="{{ c.image.url }}" alt="{{ c.name }}" class="img-responsive">
+            </div>
+            <div class="col-md-8">
+              <h3><a href="{% url 'course:detail' slug=c.slug %}">{{ c.name }}</a></h3>
+              <div class="subtext">
+                <div class="pull-left">
+                  <span><strong>รหัส</strong> {{ c.code }}</span>
+                  <span><strong>ระยะเวลา</strong> {{ c.code }}</span>
+                </div>
+                <div class="pricing">
+                  <strong>{{ c.price|floatformat:0|intcomma }} ฿</strong>
+                </div>
+              </div>
+              <div class="preview">{{ c.title|truncatewords:15 }}</div>
+              <div class="footer">
+                <a href="{% url 'course:detail' slug=c.slug %}" class="btn btn-success">ดูรายละเอียด</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="#" class="list-group-item">หลักสูตรทั้งหมด</a>
+          {% for c in categories %}
+          <a href="#" class="list-group-item">{{ c.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

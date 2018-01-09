@@ -1,0 +1,186 @@
+header {
+  padding: 15px 0;
+}
+
+body {
+  color: #555;
+  background-color: #f3f3f3;
+}
+
+section {
+  padding: 20px 0 40px 0;
+}
+
+section .container h1 {
+  margin-bottom: 40px;
+}
+
+/**/
+.btn {
+  border-radius: 0;
+}
+
+/**/
+.course-list {
+  padding: 15px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px #ddd;
+}
+
+.course-list h3 a {
+  color: #555;
+  text-decoration: none;
+}
+
+.course-list h3 a:hover {
+  color: #d40c0c;
+}
+
+.course-list .subtext {
+  width: 100%;
+  display: inline-block;
+  clear: both;
+  line-height: 32px;
+}
+
+.course-list .subtext .pricing {
+  float: right;
+  font-size: 18px;
+}
+
+.course-list .subtext .pricing strong {
+  color: #008000;
+}
+
+.course-list .preview {
+  margin-bottom: 15px;
+}
+
+.course-list .footer {
+  width: 100%;
+  clear: both;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.course-list .footer .hilight {
+  padding: 2px 10px;
+  font-size: 18px;
+  background-color: #ddd;
+}
+
+/**/
+#course {
+  margin-bottom: 40px;
+}
+
+#course .image {
+  margin-bottom: 40px;
+}
+
+#course .form-group {
+  margin-top: 40px;
+}
+
+#course .panel ul {
+  margin-bottom: 20px;
+}
+
+#course .panel li {
+  padding: 2px 0;
+  line-height: 22px;
+}
+
+#course .bank-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 !important;
+}
+
+#course .bank-list img {
+  width: 22px;
+  margin-right: 5px;
+}
+
+#course .bank-list li {
+  padding: 5px 0;
+}
+
+#course .tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#course .tags li {
+  display: inline-block;
+}
+
+#course .tags li a {
+  display: block;
+  padding: 6px 12px;
+  color: #555;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+#course .tags li a:hover {
+  color: #d40c0c;
+  background-color: #fff;
+}
+
+#course .check-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#course .check-list li {
+  padding: 5px 0;
+}
+
+#course .course-link {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#course .course-link li {
+  padding: 10px 0;
+}
+
+#course .course-link li a {
+  display: block;
+  overflow: hidden;
+  color: #555;
+  text-decoration: none;
+}
+
+#course .course-link li:hover a .item > strong {
+  color: #d40c0c;
+}
+
+#course .course-link img {
+  float: left;
+  width: 100px;
+  margin-right: 15px;;
+}
+
+#course .course-link .item {
+  overflow: hidden;
+}
+
+#course .profile {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#course .profile img {
+  float: left;
+  width: 100px;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  margin-right: 15px;
+}
