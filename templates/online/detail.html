@@ -1,1 +1,156 @@
 {% extends "master/base.html" %}
+{% load humanize %}
+
+{% block script %}
+<link type="text/css" rel="stylesheet" href="/static/vendor/flowplayer/skin/skin.css">
+<script type="text/javascript" src="/static/vendor/flowplayer/flowplayer.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="subnav">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+      <li><a href="{% url 'online:index' %}">คอร์สออนไลน์</a></li>
+      <li class="active">{{ video.code }}</li>
+    </ul>
+  </div>
+</div>
+<div id="course">
+  <div class="container">
+    <h1>{{ video.name }}</h1>
+    <div class="row">
+      <div class="col-md-8">
+        {% if player %}
+          <div class="flowplayer" id="player"></div>
+        {% elif video.image %}
+          <img src="{{ video.image.url }}" style="width:80%">
+        {% endif %}
+        <!-- ./player screen -->
+        {% if player %}
+        <h3>จำนวน {{ video.lessons }} บทเรียน</h3>
+        <div class="panel panel-default">
+          <table class="table table-playlist">
+          {% regroup video.videoplaylist_set.all by chapter as playlists %}
+          {% for pl in playlists %}
+            <thead>
+              <tr><th colspan="5">{{ pl.grouper }}</th></tr>
+            </thead>
+            <tbody>
+              {% for c in pl.list %}
+              <tr class="{% if request.GET.pl|add:0 == c.id or active_pl == c.id %}active{% endif %}">
+                <td>{{ c.title }}</td>
+                <td>{% if c.preview %}<span class="label label-info">ตัวอย่าง</span>{% endif %}</td>
+                <td>
+                  {% if request.GET.pl|add:0 == c.id or active_pl == c.id %}
+                  <span class="label label-default">กำลังเล่น</span>
+                  {% else %}
+                  <a href="{% url 'online:detail' slug=video.slug %}?pl={{c.id}}"><i class="fa fa-play-circle"></i></a>
+                  {% endif %}
+                </td>
+                <td><i class="fa fa-clock-o"></i> {{ c.time }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          {% endfor %}
+          </table>
+        </div>
+        {% endif %}
+        <!-- ./player playlist -->
+      </div>
+      <div class="col-md-4">
+        {% if video.price > 0 %}
+        <div class="pricing">
+          <h3>ราคา <span>{{ video.price|floatformat:0|intcomma }}</span> บาท</h3>
+        </div>
+        <a href="#" class="btn btn-success btn-lg btn-block">สั่งซื้อคอร์สนี้</a>
+        <div class="remark">( ดูซ้ำกี่ครั้งก็ได้ แบบไม่จำกัด )</div>
+        {% endif %}
+        <!-- ./price & ordering -->
+        {% if video.description %}
+        <div class="form-group">
+          <h3>คำอธิบาย</h3>
+        </div>
+        <span><i class="fa fa-quote-left"></i> {{ video.description }}</span>
+        {% endif %}
+        <!-- ./video description -->
+        {% if video.videooption_set.count %}
+        <div class="form-group">
+          <h3>สิ่งที่มีมาด้วย</h3>
+        </div>
+        <ul class="check-list">
+          {% for o in video.videooption_set.all %}
+          <li><i class="fa fa-check"></i> {{ o.option }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- ./ video check lists -->
+        {% if video.teachers.count %}
+        <div class="form-group">
+          <h3>ผู้สอน</h3>
+          {% for t in video.teachers.all %}
+          <div class="profile">
+            <img src="{{ t.image.url }}" alt="{{ t.name }}">
+            <div class="profile-item">
+              <h4>{{ t.fullname }}</h4>
+              <div class="caption">{{ t.position }}</div>
+              <a href="#">ดูโปรไฟล์แบบเต็ม</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <!-- ./ video teacher -->
+        {% if related_videos|length %}
+        <div class="form-group">
+          <h3>คอร์สที่เกี่ยวข้อง</h3>
+          <ul class="course-link">
+            {% for r in related_videos %}
+            <li>
+              <a href="{% url 'online:detail' slug=r.slug %}">
+                <img src="{{ r.image.url }}" alt="{{ r.name }}">
+                <div class="item">
+                  <strong>{{ r.name }}</strong>
+                  <div class="subtext">
+                    <span>จำนวน {{ r.lessons }} บทเรียน / <strong>{{ r.price|floatformat:0|intcomma }} ฿</strong></span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <!-- ./ video related links -->
+        {% if video.tags.count %}
+        <div class="form-group">
+          <h3>ป้ายกำกับ</h3>
+          <ul class="tags">
+            {% for t in video.tags.all %}
+            <li><a href="#">{{ t.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <!-- ./ course tags list -->
+      </div>
+    </div>
+  </div>
+</div>
+{% if player %}
+  <script type="text/javascript">
+    var auto = "{{ autoplay }}";
+    flowplayer("#player", {
+      autoplay: auto == 'True',
+      volume: [0.5],
+      clip: {
+        sources: [{
+            type: 'video/mp4',
+            src: '{{ player.link }}',
+        }],
+        title: '{{ player.title }}'
+      },
+    });
+  </script>
+{% endif %}
+{% endblock %}
