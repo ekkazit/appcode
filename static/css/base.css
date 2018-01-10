@@ -697,6 +697,10 @@ section .lead {
   margin-bottom: 40px;
 }
 
+.list-course .list-group-item:hover {
+  background-color: #f9f9f9;
+}
+
 .list-course .active {
   color: #d31a1a !important;
   background-color: #fff !important;
