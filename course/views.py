@@ -4,14 +4,16 @@ from app.models import Account, Category
 from .models import Course
 
 def index(request):
-
-    courses = Course.objects.filter(published=True).order_by('code')
     categories = Category.objects.all()
+    courses = Course.objects.all()
+
+    if request.GET.get('id'):
+        courses = courses.filter(category=request.GET.get('id'))
 
     return render(request, 'course/index.html', {
         'menu': 'course',
-        'courses': courses,
         'categories': categories,
+        'courses': courses,
     })
 
 

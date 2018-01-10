@@ -24,7 +24,7 @@
               <img src="{{ c.image.url }}" alt="{{ c.name }}" class="img-responsive">
             </div>
             <div class="col-md-8">
-              <h3><a href="{% url 'course:detail' slug=c.slug %}">{{ c.name }}</a></h3>
+              <h3><a href="{% url 'course:detail' slug=c.slug %}?id={{ request.GET.id }}">{{ c.name }}</a></h3>
               <div class="subtext">
                 <div class="pull-left">
                   <span><strong>รหัส:</strong> {{ c.code }}</span>
@@ -36,18 +36,20 @@
               </div>
               <div class="preview">{{ c.title|truncatewords:10 }}</div>
               <div class="footer">
-                <a href="{% url 'course:detail' slug=c.slug %}" class="btn btn-success">ดูรายละเอียด</a>
+                <a href="{% url 'course:detail' slug=c.slug %}?id={{ request.GET.id }}" class="btn btn-success">ดูรายละเอียด</a>
               </div>
             </div>
           </div>
         </div>
+        {% empty %}
+        <h4>ไม่พบข้อมูลคอร์สอบรม</h4>
         {% endfor %}
       </div>
       <div class="col-md-3">
-        <div class="list-group">
-          <a href="#" class="list-group-item">หลักสูตรทั้งหมด</a>
+        <div class="list-group list-course">
+          <a href="{% url 'course:index' %}" class="list-group-item {% if request.GET.id is None or request.GET.id == "" %}active{% endif %}">หลักสูตรอบรมทั้งหมด</a>
           {% for c in categories %}
-          <a href="#" class="list-group-item">{{ c.name }}</a>
+          <a href="{% url 'course:index' %}?id={{ c.id }}" class="list-group-item {% if request.GET.id|add:0 == c.id %}active{% endif %}">{{ c.name }}</a>
           {% endfor %}
         </div>
       </div>
