@@ -1,1 +1,184 @@
 {% extends "master/base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="subnav">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+      <li><a href="{% url 'book:index' %}">หนังสือ</a></li>
+      <li class="active">{{ book.code }}</li>
+    </ul>
+  </div>
+</div>
+<section id="course">
+  <div class="container">
+    <h1>{{ book.name }}</h1>
+    <div class="row">
+      <div class="col-md-8">
+        {% if book.code %}
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-4">
+                {% if book.image %}
+                <img src="{{ book.image.url }}" alt="{{ book.name }}" class="img-responsive">
+                {% endif %}
+              </div>
+              <div class="col-md-8">
+                <h4 style="line-height:24px">{{ book.title }}</h4>
+                <table class="table-book">
+                  <tr>
+                    <td>รหัสหนังสือ</td>
+                    <td>{{ book.code }}</td>
+                  </tr>
+                  <tr>
+                    <td>ประเภท</td>
+                    <td>{{ book.category.name }}</td>
+                  </tr>
+                  <tr>
+                    <td>ผู้เขียน</td>
+                    <td>{{ book.teacher.name }}</td>
+                  </tr>
+                  <tr>
+                    <td>จำนวนหน้า</td>
+                    <td>{{ book.pages }}</td>
+                  </tr>
+                  <tr>
+                    <td>ปีที่พิมพ์</td>
+                    <td>{{ book.years }}</td>
+                  </tr>
+                </table>
+                {% if book.example %}
+                <hr>
+                <h4 style="margin-bottom:30px">ดูสารบัญ และตัวอย่างบทแรก <a href="{{ book.example.url }}" target="_blank">คลิกที่นี่</a></h4>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <!-- ./ book description -->
+        {% if book.preview %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <strong>รายละเอียด</strong>
+            </div>
+          </div>
+          <div class="panel-body">
+            <span><i class="fa fa-quote-left"></i> {{ book.preview }}</span>
+          </div>
+        </div>
+        {% endif %}
+        <!-- ./ book preview -->
+        {% if accounts|length %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <strong>การชำระเงิน</strong>
+            </div>
+          </div>
+          <div class="panel-body">
+            <ul class="bank-list">
+              {% for b in accounts %}
+              <li>
+                {% if b.image %}<img src="{{ b.image.url }}" alt="{{ b.bank }}">{% endif %}
+                <span>{{ b.bank }} สาขา{{ b.branch }} บัญชี <strong>{{ b.acc_code }}</strong> {{ b.type }} {{ b.acc_name }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+        <!-- ./ book payment accounts -->
+      </div>
+      <div class="col-md-4">
+        <ul class="radio-group">
+          <li><label><input type="radio" name="type" data-value="paper" value="{{ book.price }}" checked> หนังสือเล่ม</label></li>
+          <li><label><input type="radio" name="type" data-value="ebook" value="{{ book.price_ebook }}"> e-Book (PDF)</label></li>
+        </ul>
+        <div class="pricing">
+          <h3>ราคา <span id="price"></span> บาท/เล่ม</h3>
+        </div>
+        <a href="#" class="btn btn-success btn-lg btn-block">สั่งซื้อหนังสือเล่มนี้</a>
+        <div class="remark" id="qty">( จำนวนคงเหลือ {{ book.qty }} เล่ม )</div>
+        {% if book.bookoption_set.count %}
+        <div class="form-group">
+          <h3>สิ่งที่มีมาด้วย</h3>
+          <ul class="check-list">
+            {% for o in book.bookoption_set.all %}
+            <li><i class="fa fa-check"></i> {{ o.option }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <!-- ./ book options -->
+        {% if book.teacher %}
+        <div class="form-group">
+          <h3>ผู้เขียน</h3>
+          <div class="profile">
+            <img src="{{ book.teacher.image.url }}" alt="{{ book.teacher.name }}">
+            <div class="profile-item">
+              <h4>{{ book.teacher.fullname }}</h4>
+              <div class="caption">{{ book.teacher.position }}</div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <!-- ./ book teacher -->
+        {% if related_books|length %}
+        <div class="form-group">
+          <h3>หนังสือที่เกี่ยวข้อง</h3>
+          <ul class="course-link">
+            {% for r in related_books %}
+            <li>
+              <a href="{% url 'book:detail' slug=r.slug %}">
+                <div class="item">
+                  <strong>{{ r.name }}</strong>
+                  <div class="subtext">
+                    <span>จำนวน {{ r.pages }} หน้า / <strong>{{ r.price|floatformat:0|intcomma }} ฿</strong></span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <!-- ./ book related -->
+        {% if book.tags.count %}
+        <div class="form-group">
+          <h3>ป้ายกำกับ</h3>
+          <ul class="tags">
+            {% for t in book.tags.all %}
+            <li><a href="#">{{ t.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <!-- ./ book tags list -->
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  function formatNumber(v) {
+    return v.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+  }
+
+  $(function () {
+    $('#qty').show();
+    $('#price').html(formatNumber($("input[name='type']:checked").val()));
+
+    $("input[name='type']").on('click', function () {
+      $('#price').html(formatNumber($(this).val()));
+      if($(this).attr('data-value') == 'paper') {
+        $('#qty').show();
+      } else {
+        $('#qty').hide();
+      }
+    });
+  });
+</script>
+{% endblock %}

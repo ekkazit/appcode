@@ -1,1 +1,7 @@
 {% extends "master/base.html" %}
+
+{% block content %}
+{% for b in books %}
+<a href="{% url 'book:detail' slug=b.slug %}">{{ b.name }}</a>
+{% endfor %}
+{% endblock %}
