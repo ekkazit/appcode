@@ -77,8 +77,8 @@
         {% endif %}
         <!-- ./ course promotion -->
         <div class="pricing">
-          <h3>ราคา {{ course.price|floatformat:0|intcomma }} บาท</h3>
-          <div class="price-tax">( ราคานี้ยังไม่รวมภาษีมูลค่าเพิ่ม )</div>
+          <h3>ราคา <span>{{ course.price|floatformat:0|intcomma }}</span> บาท</h3>
+          <div>( ราคานี้ยังไม่รวมภาษีมูลค่าเพิ่ม )</div>
         </div>
         <!-- ./ course pricing -->
         <!--
