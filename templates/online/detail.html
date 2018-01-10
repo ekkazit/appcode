@@ -4,6 +4,7 @@
 {% block script %}
 <link type="text/css" rel="stylesheet" href="/static/vendor/flowplayer/skin/skin.css">
 <script type="text/javascript" src="/static/vendor/flowplayer/flowplayer.min.js"></script>
+<script type="text/javascript" src="/static/vendor/flowplayer/flowplayer.hlsjs.light.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -139,20 +140,21 @@
 </div>
 {% if player %}
   <script type="text/javascript">
-    var auto = '{{ autoplay }}';
-    var player = flowplayer("#player", {
-      autoplay: auto === 'True',
-      splash: auto === 'True' ? false : '{{ video.image.url }}',
-      clip: {
-        sources: [{
-            type: 'video/mp4',
-            src: '{{ player.link }}',
-        }],
-        title: '{{ player.title }}'
-      },
-    });
-    player.volumeLevel = 0.5;
-    player.volume = 0.5;
+    window.onload = function () {
+      var auto = '{{ autoplay }}';
+      var player = flowplayer("#player", {
+        autoplay: auto === 'True',
+        splash: auto === 'True' ? false : '{{ video.image.url }}',
+        clip: {
+          sources: [{
+              type: 'video/mp4',
+              src: '{{ player.link }}',
+          }],
+          title: '{{ player.title }}'
+        },
+      });
+      player.volumeLevel = 0.5;
+    };
   </script>
 {% endif %}
 {% endblock %}
