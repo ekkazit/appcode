@@ -140,7 +140,8 @@
 </div>
 {% if player %}
   <script type="text/javascript">
-    window.onload = function () {
+
+    function playVideo() {
       var auto = '{{ autoplay }}';
       var player = flowplayer("#player", {
         autoplay: auto === 'True',
@@ -154,6 +155,15 @@
         },
       });
       player.volumeLevel = 0.5;
+    }
+
+    window.onload = function () {
+      var link = '{{ player.link }}';
+      if(link != 'None') {
+        playVideo();
+      } else {
+        alert('ลิงค์มีปัญหา! ไม่สามารถเล่นวีดีโอได้');
+      }
     };
   </script>
 {% endif %}
