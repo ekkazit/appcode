@@ -11,7 +11,7 @@ h2 {
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .btn-lg {
@@ -315,6 +315,10 @@ section .lead {
 
 #course .check-list li {
   padding: 5px 0;
+}
+
+#course .check-list li .fa {
+  margin-right: 2px;
 }
 
 #course .course-link {

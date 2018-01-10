@@ -47,7 +47,7 @@
       </div>
       <div class="col-md-3">
         <div class="list-group list-course">
-          <a href="{% url 'course:index' %}" class="list-group-item {% if request.GET.id is None or request.GET.id == "" %}active{% endif %}">หลักสูตรอบรมทั้งหมด</a>
+          <a href="{% url 'course:index' %}" class="list-group-item {% if request.GET.id is None or request.GET.id == "" %}active{% endif %}">คอร์สอบรมทั้งหมด</a>
           {% for c in categories %}
           <a href="{% url 'course:index' %}?id={{ c.id }}" class="list-group-item {% if request.GET.id|add:0 == c.id %}active{% endif %}">{{ c.name }}</a>
           {% endfor %}
