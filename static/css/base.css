@@ -7,11 +7,27 @@ body {
   background-color: #f3f3f3;
 }
 
+.nav-tabs {
+  font-size: 18px;
+  font-family: 'rsu_regular', sans-serif;
+  margin: 20px 0 40px 0;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background-color: #f3f3f3;
+}
+
 section {
   padding: 20px 0 40px 0;
 }
 
+section h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 section .container h1 {
+  text-align: left;
   margin-bottom: 40px;
 }
 
@@ -422,4 +438,53 @@ section .container h1 {
 
 .box .heading h1 {
   font-size: 38px;
+}
+
+/**/
+.panel {
+  margin-bottom: 20px;
+}
+
+.panel img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.panel .mce-style {
+  padding: 0;
+}
+
+.panel .mce-style ul {
+  margin-bottom: 20px;
+}
+
+.panel .mce-style ul li {
+  padding: 2px 0;
+  line-height: 22px;
+}
+
+.panel .panel-heading strong {
+  font-size: 18px;
+  font-family: 'rsu_regular', sans-serif;
+}
+
+.panel .panel-heading a {
+  color: #555;
+  text-decoration: none;
+}
+
+.panel .panel-heading a:hover {
+  color: #d60404;
+}
+
+.panel .panel-heading a[aria-expanded="true"] {
+  color: #d60404 !important;
+}
+
+.panel .panel-heading .collapsed {
+  color: #555 !important;
+}
+
+/**/
+.panel-group .panel:first-child .panel-heading a {
+  color: #d60404;
 }
