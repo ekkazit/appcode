@@ -1,7 +1,46 @@
 {% extends "master/base.html" %}
+{% load humanize %}
 
 {% block content %}
-{% for b in books %}
-<a href="{% url 'book:detail' slug=b.slug %}">{{ b.name }}</a>
-{% endfor %}
+<div class="subnav">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+      <li class="active">หนังสือ</li>
+    </ul>
+  </div>
+</div>
+<section>
+  <h1>หนังสือ</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="lead">หนังสือคุณภาพจากทีมงาน เนื้อหาแน่น คำอธิบายครบ เขียนจากประสบการณ์ใช้งานจริง พร้อมเวิร์คชอฟท้ายเล่ม</div>
+      </div>
+    </div>
+    {% for b in books %}
+      {% if forloop.first %}<div class="row">{% endif %}
+      <div class="col-md-6">
+        <div class="book">
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{ b.image.url }}" alt="{{ b.name }}" class="img-responsive">
+            </div>
+            <div class="col-md-9">
+              <h3><a href="{% url 'book:detail' slug=b.slug %}">{{ b.name }}</a></h3>
+              <div class="title">{{ b.title }}</div>
+              <div class="subtext">
+                <span class="pull-left"><strong>จำนวน</strong> {{ b.pages }} หน้า</span>
+                <span class="pricing">{{ b.price|floatformat:0|intcomma }} ฿</span>
+              </div>
+              <a href="{% url 'book:detail' slug=b.slug %}" class="btn btn-success">ดูรายละเอียด</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if forloop.counter|divisibleby:2 %}</div><div class="row">{% endif %}
+      {% if forloop.last %}</div>{% endif %}
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}

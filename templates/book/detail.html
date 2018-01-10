@@ -20,12 +20,12 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                 {% if book.image %}
                 <img src="{{ book.image.url }}" alt="{{ book.name }}" class="img-responsive">
                 {% endif %}
               </div>
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <h4 style="line-height:24px">{{ book.title }}</h4>
                 <table class="table-book">
                   <tr>
@@ -38,7 +38,7 @@
                   </tr>
                   <tr>
                     <td>ผู้เขียน</td>
-                    <td>{{ book.teacher.name }}</td>
+                    <td>{{ book.teacher.fullname }}</td>
                   </tr>
                   <tr>
                     <td>จำนวนหน้า</td>

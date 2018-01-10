@@ -8,7 +8,7 @@ body {
 }
 
 .nav-tabs {
-  margin: 20px 0 40px 0;
+  margin-bottom: 40px;
 }
 
 .nav-tabs > li.active > a,
@@ -28,6 +28,10 @@ section h1 {
 
 section .container h1 {
   text-align: left;
+  margin-bottom: 40px;
+}
+
+section .lead {
   margin-bottom: 40px;
 }
 
@@ -513,4 +517,43 @@ section .container h1 {
 
 .radio-group li:last-child {
   margin-right: 0;
+}
+
+.book {
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px #ddd;
+  margin-bottom: 40px;
+}
+
+.book h3 {
+  margin: 10px 0;
+  font-size: 22px;
+}
+
+.book h3 a {
+  color: #555;
+  text-decoration: none;
+}
+
+.book h3 a:hover {
+  color: #d40c0c;
+}
+
+.book .title {
+  margin: 10px 0;
+}
+
+.book .subtext {
+  width: 100%;
+  display: inline-block;
+  clear: both;
+  margin-top: 10px;
+}
+
+.book .pricing {
+  float: right;
+  font-weight: bold;
+  font-size: 18px;
+  color: #008000;
 }
