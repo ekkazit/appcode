@@ -2,16 +2,19 @@
 {% load humanize %}
 
 {% block content %}
-<div class="subnav">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
-      <li><a href="{% url 'book:index' %}">หนังสือ</a></li>
-      <li class="active">{{ book.code }}</li>
-    </ul>
+<div id="subnav" class="subnav-book">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'book:index' %}">หนังสือ</a></li>
+        <li class="active">{{ book.code }}</li>
+      </ul>
+      <h1>หนังสือ</h1>
+    </div>
   </div>
 </div>
-<section id="course">
+<div id="course">
   <div class="container">
     <h1>{{ book.name }}</h1>
     <div class="row">
@@ -26,7 +29,7 @@
                 {% endif %}
               </div>
               <div class="col-md-9">
-                <h4 style="line-height:24px">{{ book.title }}</h4>
+                <h4 style="line-height:30px">{{ book.title }}</h4>
                 <table class="table-book">
                   <tr>
                     <td>รหัสหนังสือ</td>
@@ -161,7 +164,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 <script type="text/javascript">
   function formatNumber(v) {
     return v.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");

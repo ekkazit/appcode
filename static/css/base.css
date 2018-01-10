@@ -1,11 +1,102 @@
 header {
-  padding: 15px 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #e7e7e7;
 }
 
 body {
   color: #555;
-  background-color: #f3f3f3;
+  line-height: 1.8em;
+  background-color: #eee;
+  font-family: 'THSarabunNew', sans-serif;
 }
+
+.brand-logo img {
+  height: 26px;
+  margin: 8px 0;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.brand-logo a {
+  color: #0000ff;
+  text-decoration: none;
+}
+
+.navbar-default {
+  margin: 0;
+}
+
+
+/**/
+#subnav {
+  margin: 0;
+}
+
+#subnav .breadcrumb {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+#subnav .breadcrumb li a {
+  color: #bbb;
+  text-decoration: none;
+}
+
+#subnav .breadcrumb li a:hover {
+  color: #fff;
+}
+
+#subnav .breadcrumb .active {
+  color: #ccc;
+}
+
+#subnav h1 {
+  margin: 20px 0;
+  color: #fff;
+  text-align: center;
+}
+
+.subnav-inner {
+  padding: 20px 0;
+  background-color: rgba(10, 10, 10, 0.4);
+}
+
+.subnav-course {
+  background: url('/static/img/paralax/course.jpg') no-repeat;
+  background-size: cover;
+}
+
+.subnav-book {
+  background: url('/static/img/paralax/book.jpg') no-repeat;
+  background-size: cover;
+}
+
+.subnav-service {
+  background: url('/static/img/paralax/service.jpg') no-repeat;
+  background-size: cover;
+}
+
+.subnav-blog {
+  background: url('/static/img/paralax/blog.jpg') no-repeat;
+  background-size: cover;
+}
+
+.subnav-jobs {
+  background: url('/static/img/paralax/jobs.jpg') no-repeat;
+  background-size: cover;
+}
+
+.subnav-about {
+  background: url('/static/img/paralax/about.jpg') no-repeat;
+  background-size: cover;
+}
+
+.subnav-online {
+  background: url('/static/img/paralax/online.jpg') no-repeat;
+  background-size: cover;
+}
+
 
 .nav-tabs {
   margin-bottom: 40px;
@@ -14,11 +105,12 @@ body {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  background-color: #f3f3f3;
+  background-color: #eee;
 }
 
+/**/
 section {
-  padding: 20px 0 40px 0;
+  margin: 60px 0 80px 0;
 }
 
 section h1 {
@@ -32,6 +124,8 @@ section .container h1 {
 }
 
 section .lead {
+  line-height: 1.8em;
+  font-size: 20px;
   margin-bottom: 40px;
 }
 
@@ -44,8 +138,8 @@ section .lead {
 .course-list {
   padding: 15px;
   background-color: #fff;
+  border: 1px solid #ddd;
   margin-bottom: 20px;
-  box-shadow: 0 1px 2px #ddd;
 }
 
 .course-list h3 a {
@@ -92,6 +186,10 @@ section .lead {
 
 /**/
 #course {
+  padding: 40px 0;
+}
+
+#course h1 {
   margin-bottom: 40px;
 }
 
@@ -147,8 +245,8 @@ section .lead {
 }
 
 #course .tags li a:hover {
-  color: #d40c0c;
-  background-color: #fff;
+  color: #fff;
+  background-color: #aaa;
 }
 
 #course .check-list {
@@ -227,8 +325,8 @@ section .lead {
 }
 
 #course .flowplayer {
-  margin: 20px 0;
   border-radius: 0;
+  margin: 0;
 }
 
 #course .table-playlist thead tr th {
@@ -254,9 +352,6 @@ section .lead {
   color: #d31a1a;
 }
 
-#course .table-playlist .fa-play-circle {
-  font-size: 18px;
-}
 
 #course .pricing {
   margin-bottom: 20px;
@@ -270,11 +365,6 @@ section .lead {
   margin-top: 20px;
 }
 
-#course .flowplayer {
-  margin: 20px 0;
-  border-radius: 0;
-}
-
 #course .table-playlist thead tr th {
   color: #fff;
   background-color: #999;
@@ -298,8 +388,9 @@ section .lead {
   color: #d31a1a;
 }
 
-#course .table-playlist .fa-play-circle {
-  font-size: 18px;
+#course .table-playlist .fa-play-circle-o {
+  color: #777;
+  font-size: 24px;
 }
 
 #course .table-book {
@@ -321,7 +412,7 @@ section .lead {
 /**/
 .online {
   background-color: #fff;
-  box-shadow: 0 1px 2px #ddd;
+  border: 1px solid #ddd;
   margin-bottom: 40px;
 }
 
@@ -343,7 +434,7 @@ section .lead {
 }
 
 .online h4 {
-  line-height: 22px;
+  line-height: 26px;
 }
 
 .online h4 a {
@@ -356,7 +447,7 @@ section .lead {
 }
 
 .online .content {
-  padding: 5px 10px 10px 10px;
+  padding: 10px;
 }
 
 .online .preview {
@@ -446,7 +537,6 @@ section .lead {
 }
 
 .box .contact {
-  line-height: 22px;
   margin-bottom: 30px;
 }
 
@@ -475,10 +565,6 @@ section .lead {
 
 .panel img {
   image-rendering: -webkit-optimize-contrast;
-}
-
-.panel .panel-body {
-  line-height: 1.6em;
 }
 
 .panel .mce-style {
@@ -534,8 +620,8 @@ section .lead {
 /**/
 .book {
   padding: 15px;
+  border: 1px solid #ddd;
   background-color: #fff;
-  box-shadow: 0 1px 2px #ddd;
   margin-bottom: 40px;
 }
 

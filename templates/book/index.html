@@ -2,16 +2,18 @@
 {% load humanize %}
 
 {% block content %}
-<div class="subnav">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
-      <li class="active">หนังสือ</li>
-    </ul>
+<div id="subnav" class="subnav-book">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li class="active">หนังสือ</li>
+      </ul>
+      <h1>หนังสือ</h1>
+    </div>
   </div>
 </div>
 <section>
-  <h1>หนังสือ</h1>
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">

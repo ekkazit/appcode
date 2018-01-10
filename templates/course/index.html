@@ -2,17 +2,19 @@
 {% load humanize %}
 
 {% block content %}
-<div class="subnav">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
-      <li class="active">หลักสูตรอบรม</li>
-    </ul>
+<div id="subnav" class="subnav-course">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li class="active">คอร์สอบรม</li>
+      </ul>
+      <h1>คอร์สอบรม</h1>
+    </div>
   </div>
 </div>
 <section>
   <div class="container">
-    <h1>หลักสูตรอบรม</h1>
     <div class="row">
       <div class="col-md-9">
         {% for c in courses %}

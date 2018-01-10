@@ -3,12 +3,15 @@
 {% block title %}เกี่ยวกับเรา | แอพโค้ด เทคโนโลยี จำกัด | สถาบันสอนเขียนโปรแกรม เรียนทำโมบายแอพ เรียนเว็บแอพลิเคชั่น เรียน IOT บริการอบรมทั้งในและนอกสถานที่{% endblock %}
 
 {% block content %}
-<div class="subnav">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
-      <li class="active">เกี่ยวกับ</li>
-    </ul>
+<div id="subnav" class="subnav-about">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li class="active">เกี่ยวกับเรา</li>
+      </ul>
+      <h1>เกี่ยวกับเรา</h1>
+    </div>
   </div>
 </div>
 <section>
@@ -16,9 +19,6 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="box">
-          <div class="heading">
-            <h2>เกี่ยวกับเรา</h2>
-          </div>
           <p>ยินดีต้อนรับทุกท่านเข้าสู่เว็บไซต์ <a href="{% url 'app:index' %}">appcode.in.th</a> เราคือสถาบันอบรมคอมพิวเตอร์ ที่ให้บริการฝึกอบรมการเขียนโปรแกรม และพัฒนาโมบายแอพลิเคชั่น โดยวิทยากรผู้มีประสบการณ์ และมีความชำนาญในการทำงานจริง</p>
           <p>จุดเด่นของเรา คือสามารถอบรมเป็นแบบกลุ่มย่อยได้ เพื่อให้ผู้เรียนได้สามารถสอบถาม ข้อสังสัยต่างๆ ไม่ว่าจะเป็นจากการทำงาน หรือจากการอบรม กับทางวิทยากรที่อบรมได้ทันที นอกจากนี้แล้วหลักสูตรของเรา เป็นหลักสูตรที่ใช้งานได้จริง ปฏิบัติงานได้จริง ซึ่งหากจบการอบรมแล้ว สามารถติดต่อปรึกษาเพิ่มเติมได้ด้วย</p>
         </div>

@@ -8,13 +8,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="subnav">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
-      <li><a href="{% url 'online:index' %}">คอร์สออนไลน์</a></li>
-      <li class="active">{{ video.code }}</li>
-    </ul>
+<div id="subnav" class="subnav-online">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'online:index' %}">คอร์สออนไลน์</a></li>
+        <li class="active">{{ video.code }}</li>
+      </ul>
+      <h1>บทเรียน</h1>
+    </div>
   </div>
 </div>
 <div id="course">
@@ -46,7 +49,7 @@
                   {% if request.GET.pl|add:0 == c.id or active_pl == c.id %}
                   <span class="label label-default">กำลังเล่น</span>
                   {% else %}
-                  <a href="{% url 'online:detail' slug=video.slug %}?pl={{c.id}}"><i class="fa fa-play-circle"></i></a>
+                  <a href="{% url 'online:detail' slug=video.slug %}?pl={{c.id}}"><i class="fa fa-play-circle-o"></i></a>
                   {% endif %}
                 </td>
                 <td><i class="fa fa-clock-o"></i> {{ c.time }}</td>
