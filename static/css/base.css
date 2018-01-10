@@ -230,6 +230,10 @@ section .container h1 {
   font-size: 18px;
 }
 
+#course .is_splash {
+  display: none;
+}
+
 /**/
 .online {
   background-color: #fff;

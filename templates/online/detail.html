@@ -4,6 +4,53 @@
 {% block script %}
 <link type="text/css" rel="stylesheet" href="/static/vendor/flowplayer/skin/skin.css">
 <script type="text/javascript" src="/static/vendor/flowplayer/flowplayer.min.js"></script>
+
+<style>
+#course .pricing {
+  margin-bottom: 20px;
+}
+
+#course .pricing span {
+  color: #c30;
+}
+
+#course .remark {
+  margin-top: 20px;
+}
+
+#course .flowplayer {
+  margin: 20px 0;
+  border-radius: 0;
+}
+
+#course .table-playlist thead tr th {
+  color: #fff;
+  background-color: #999;
+  border-bottom: none;
+}
+
+#course .table-playlist tbody tr td {
+  height: 42px;
+  vertical-align: middle;
+}
+
+#course .table-playlist tbody tr td:nth-child(3) {
+  width: 15%;
+}
+
+#course .table-playlist tbody tr td:last-child {
+  width: 10%;
+}
+
+#course .table-playlist tbody .active td:first-child {
+  color: #d31a1a;
+}
+
+#course .table-playlist .fa-play-circle {
+  font-size: 18px;
+}
+</style>
+
 {% endblock %}
 
 {% block content %}
@@ -139,10 +186,10 @@
 </div>
 {% if player %}
   <script type="text/javascript">
-    var auto = "{{ autoplay }}";
-    flowplayer("#player", {
-      autoplay: auto == 'True',
-      volume: [0.5],
+    var auto = '{{ autoplay }}';
+    var player = flowplayer("#player", {
+      autoplay: auto === 'True',
+      splash: auto === 'True' ? false : '{{ video.image.url }}',
       clip: {
         sources: [{
             type: 'video/mp4',
@@ -151,6 +198,8 @@
         title: '{{ player.title }}'
       },
     });
+    player.volumeLevel = 0.5;
+    player.volume = 0.5;
   </script>
 {% endif %}
 {% endblock %}
