@@ -355,3 +355,71 @@ section .container h1 {
   background-position: 50% 50%;
   background-size: 200%;
 }
+
+/**/
+.feature-sm {
+  margin: 20px 0;
+}
+
+.feature-sm h4 {
+  color: #aa0808;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.feature-sm .icon {
+  margin: 20px 0;
+  color: #aa0808;
+  text-align: center;
+}
+
+/**/
+.map {
+  width: 100%;
+  display:inline-block; overflow:hidden;
+}
+
+.map iframe {
+  top: -50px;
+  position: relative;
+}
+
+/**/
+.box {
+  margin-bottom: 60px;
+}
+
+.box h2 {
+  margin-bottom: 40px;
+}
+
+.box p {
+  padding: 5px 0;
+}
+
+.box a {
+  color: #aa0808;
+}
+
+.box .contact {
+  line-height: 22px;
+  margin-bottom: 30px;
+}
+
+.box .contact h4 {
+  margin-bottom: 10px;
+}
+
+.box .contact ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.box .heading {
+  text-align: center;
+}
+
+.box .heading h1 {
+  font-size: 38px;
+}

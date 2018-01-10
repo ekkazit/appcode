@@ -1,1 +1,114 @@
 {% extends "master/base.html" %}
+
+{% block title %}เกี่ยวกับเรา | แอพโค้ด เทคโนโลยี จำกัด | สถาบันสอนเขียนโปรแกรม เรียนทำโมบายแอพ เรียนเว็บแอพลิเคชั่น เรียน IOT บริการอบรมทั้งในและนอกสถานที่{% endblock %}
+
+{% block content %}
+<div class="subnav">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+      <li class="active">เกี่ยวกับ</li>
+    </ul>
+  </div>
+</div>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="box">
+          <div class="heading">
+            <h2>เกี่ยวกับเรา</h2>
+          </div>
+          <p>ยินดีต้อนรับทุกท่านเข้าสู่เว็บไซต์ <a href="{% url 'app:index' %}">appcode.in.th</a> เราคือสถาบันอบรมคอมพิวเตอร์ ที่ให้บริการฝึกอบรมการเขียนโปรแกรม และพัฒนาโมบายแอพลิเคชั่น โดยวิทยากรผู้มีประสบการณ์ และมีความชำนาญในการทำงานจริง</p>
+          <p>จุดเด่นของเรา คือสามารถอบรมเป็นแบบกลุ่มย่อยได้ เพื่อให้ผู้เรียนได้สามารถสอบถาม ข้อสังสัยต่างๆ ไม่ว่าจะเป็นจากการทำงาน หรือจากการอบรม กับทางวิทยากรที่อบรมได้ทันที นอกจากนี้แล้วหลักสูตรของเรา เป็นหลักสูตรที่ใช้งานได้จริง ปฏิบัติงานได้จริง ซึ่งหากจบการอบรมแล้ว สามารถติดต่อปรึกษาเพิ่มเติมได้ด้วย</p>
+        </div>
+        <div class="box">
+          <div class="heading">
+            <h2>เรียนออนไลน์ทุกที่ทุกเวลา</h2>
+          </div>
+          <p>เราเชื่อว่าการเรียนรู้ไม่มีข้อจำกัด เราจึงเพิ่มช่องทางหลักสูตรออนไลน์ เพื่อให้ผู้เรียนสามารถเรียนได้ทุกที่ ทุกเวลา ซึ่งสามารถเรียนซ้ำได้ตามที่ต้องการ โดยไม่จำเป็นต้องเข้ามาอบรมกับทางสถาบัน ซึ่งอำนวยความสะดวกแก่ผู้ที่อยู่ห่างไกล สามารถเข้ามาศึกษาได้ง่ายขึ้น นอกจากนี้หากติดปัญหาเพิ่มเติม สามารถสอบถามกับวิทยากรผ่านทาง LINE ได้ทันที</p>
+        </div>
+        <div class="box">
+          <div class="heading">
+            <h2>ทำไมจึงเลือกเรียนกับเรา</h2>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="feature-sm">
+                <div class="icon">
+                  <i class="fa fa-users fa-2x"></i>
+                </div>
+                <h4>สามารถอบรมเป็นกลุ่มย่อยได้</h4>
+                <div class="caption">ดูแลผู้เรียนอย่างทั่วถึง หากติดปัญหาในการอบรม วิทยากรสามารถช่วยแก้ไขได้ทันที จึงมั่นใจว่าจะได้รับความรู้ ตามที่หลักสูตรได้กำหนดไว้</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature-sm">
+                <div class="icon">
+                  <i class="fa fa-clock-o fa-2x"></i>
+                </div>
+                <h4>เวลาเรียนที่ปรับเปลี่ยนได้</h4>
+                <div class="caption">ผู้เรียนสามารถยืดหยุ่นในเรื่องของเวลาได้ กรณีที่ไม่สะดวกผู้เรียนสามารถที่จะนัดเลื่อนการอบรมกับวิทยากรได้เอง จึงเหมาะกับผู้ที่มีเวลาค่อนข้างน้อย</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature-sm">
+                <div class="icon">
+                  <i class="fa fa-heart fa-2x"></i>
+                </div>
+                <h4>เราใส่ใจรายละเอียด</h4>
+                <div class="caption">จัดเตรียมเอกสาร คู่มือในการอบรมอย่างครบถ้วน พร้อมทั้งอุปกรณ์ ซอฟท์แวร์ และซอร์สโค้ดตัวอย่าง ที่ผ่านการทดสอบมาแล้วเป็นอย่างดี สามารถนำกลับไปใช้ต่อได้</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="feature-sm">
+                <div class="icon">
+                  <i class="fa fa-wrench fa-2x"></i>
+                </div>
+                <h4>เราเน้นการสอนแบบปฏิบัติ</h4>
+                <div class="caption">เราเน้นหลักสูตรด้านการปฏิบัติ โดยมีวิทยากรดูแลอย่างใกล้ชิด ผู้เรียนจะได้ลงมือปฏิบัติจริง และได้ผลงานจริง จึงมีความเข้าใจมากกว่าการเสียเวลาอ่านตำราจำนวนมาก</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature-sm">
+                <div class="icon">
+                  <i class="fa fa-star fa-2x"></i>
+                </div>
+                <h4>หลักสูตรที่ได้รับความนิยม</h4>
+                <div class="caption">เราคัดเลือกหลักสูตรที่กำลังเป็นที่ต้องการของตลาด หรือแนวโน้มที่กำลังจะถูกนำมาใช้งานในอนาคต เพื่อให้ผู้เรียนสามารถนำไปต่อยอดในการทำงานได้</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature-sm">
+                <div class="icon">
+                  <i class="fa fa-map-marker fa-2x"></i>
+                </div>
+                <h4>อบรมได้ทั้งในและนอกสถานที่</h4>
+                <div class="caption">สามารถเดินทางไปอบรมยังหน่วยงานของท่าน หรือท่านสามารถมาอบรมกับทางสถาบันได้ ซึ่งมีอุปกรณ์ที่ครบ พร้อมอาหารและเครื่องดื่มไว้คอยบริการท่าน</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="heading">
+            <h2>ติดต่อเรา</h2>
+          </div>
+          <div class="contact">
+            <h4>บริษัท แอพโค้ด เทคโนโลยี จำกัด</h4>
+            <div class="address">หมู่บ้านเบญจทรัพย์ เลขที่ 199/554 หน้าซอย 29 ม.4 ต.รังสิต อ.ธัญบุรี จ.ปทุมธานี 12110</div>
+            <ul>
+              <li><i class="fa fa-phone"></i> Tel. 02-003-3554, 083-082-6392</li>
+              <li><i class="fa fa-envelope"></i> Email: <a href="mailto:appcodetraining@gmail.com">appcodetraining@gmail.com</a></li>
+            </ul>
+          </div>
+          <div class="map">
+            <iframe frameborder="0" allowfullscreen src="https://www.google.com/maps/d/embed?mid=1iBCMDjPUciqxuT8EkPvYB5nQ-P962BOo" width="100%" height="500"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
