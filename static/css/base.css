@@ -197,6 +197,10 @@ section .lead {
   margin: 20px 0;
 }
 
+#course .profile .caption {
+  margin-bottom: 10px;
+}
+
 #course .profile .profile-item {
   overflow: hidden;
 }
@@ -527,6 +531,7 @@ section .lead {
   margin-right: 0;
 }
 
+/**/
 .book {
   padding: 15px;
   background-color: #fff;
