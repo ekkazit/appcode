@@ -78,7 +78,6 @@ body {
   }
 }
 
-
 /**/
 #subnav {
   margin: 0;
@@ -110,6 +109,7 @@ body {
   text-align: center;
 }
 
+/**/
 .subnav-inner {
   padding: 20px 0;
   background-color: rgba(10, 10, 10, 0.4);
@@ -150,7 +150,7 @@ body {
   background-size: cover;
 }
 
-
+/**/
 .nav-tabs {
   margin-bottom: 40px;
 }
@@ -195,6 +195,10 @@ section .lead {
   margin-bottom: 20px;
 }
 
+.course-list h3 {
+  margin: 10px 0;
+}
+
 .course-list h3 a {
   color: #555;
   text-decoration: none;
@@ -214,6 +218,7 @@ section .lead {
 .course-list .subtext .pricing {
   float: right;
   font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .course-list .subtext .pricing strong {
@@ -371,6 +376,7 @@ section .lead {
 
 #course .pricing span {
   color: #c30;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #course .remark {
@@ -380,38 +386,6 @@ section .lead {
 #course .flowplayer {
   border-radius: 0;
   margin: 0;
-}
-
-#course .table-playlist thead tr th {
-  color: #fff;
-  background-color: #999;
-  border-bottom: none;
-}
-
-#course .table-playlist tbody tr td {
-  height: 42px;
-  vertical-align: middle;
-}
-
-#course .table-playlist tbody tr td:nth-child(3) {
-  width: 15%;
-}
-
-#course .table-playlist tbody tr td:last-child {
-  width: 10%;
-}
-
-#course .table-playlist tbody .active td:first-child {
-  color: #d31a1a;
-}
-
-
-#course .pricing {
-  margin-bottom: 20px;
-}
-
-#course .pricing span {
-  color: #c30;
 }
 
 #course .remark {
@@ -484,6 +458,7 @@ section .lead {
   top: 10px;
   z-index: 1000;
   border-radius: 0 !important;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .online h4 {
@@ -517,8 +492,9 @@ section .lead {
 
 .online .footer .pricing {
   float: right;
-  font-size: 18px;
   font-weight: bold;
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .online .footer .price-green {
@@ -708,5 +684,6 @@ section .lead {
   float: right;
   font-weight: bold;
   font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
   color: #008000;
 }

@@ -34,7 +34,7 @@
                   <strong>{{ c.price|floatformat:0|intcomma }} ฿</strong>
                 </div>
               </div>
-              <div class="preview">{{ c.title|truncatewords:15 }}</div>
+              <div class="preview">{{ c.title|truncatewords:10 }}</div>
               <div class="footer">
                 <a href="{% url 'course:detail' slug=c.slug %}" class="btn btn-success">ดูรายละเอียด</a>
               </div>
