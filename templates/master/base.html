@@ -37,7 +37,7 @@
         </button>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-right">
           <li class="{% if menu == 'index' %}active{% endif %}"><a href="{% url 'app:index' %}">หน้าแรก</a></li>
           <li class="{% if menu == 'course' %}active{% endif %}"><a href="{% url 'course:index' %}">คอร์สอบรม</a></li>
           <li class="{% if menu == 'online' %}active{% endif %}"><a href="{% url 'online:index' %}">คอร์สออนไลน์</a></li>

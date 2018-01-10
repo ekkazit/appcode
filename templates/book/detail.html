@@ -16,7 +16,8 @@
 </div>
 <div id="course">
   <div class="container">
-    <h1>{{ book.name }}</h1>
+    <h1 style="margin-bottom:20px">{{ book.name }}</h1>
+    <h4 style="margin-bottom:40px">{{ book.title }}</h4>
     <div class="row">
       <div class="col-md-8">
         {% if book.code %}
@@ -29,7 +30,6 @@
                 {% endif %}
               </div>
               <div class="col-md-9">
-                <h4 style="line-height:30px">{{ book.title }}</h4>
                 <table class="table-book">
                   <tr>
                     <td>รหัสหนังสือ</td>
@@ -66,11 +66,11 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <div class="panel-title">
-              <strong>รายละเอียด</strong>
+              <strong>คำนำ</strong>
             </div>
           </div>
           <div class="panel-body">
-            <span><i class="fa fa-quote-left"></i> {{ book.preview }}</span>
+            <span>{{ book.preview }}</span>
           </div>
         </div>
         {% endif %}
