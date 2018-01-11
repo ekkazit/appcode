@@ -1,0 +1,137 @@
+{% extends "master/base.html" %}
+{% load humanize widget_tweaks %}
+
+{% block content %}
+<div id="subnav" class="subnav-book">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'book:index' %}">หนังสือ</a></li>
+        <li><a href="{% url 'book:detail' slug=book.slug %}">{{ book.code }}</a></li>
+        <li class="active">การสั่งซื้อ</li>
+      </ul>
+      <h1>สั่งซื้อหนังสือ</h1>
+    </div>
+  </div>
+</div>
+<div style="margin:60px 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <input type="hidden" id="unitprice" name="unitprice" value="{% if request.GET.type == 'paper' %}{{ book.price }}{% else %}{{ book.price_ebook}}{% endif %}">
+        <input type="hidden" id="totalamount" name="totalamount">
+        <table class="table table-cart">
+          <thead>
+            <tr>
+              <th>รหัสสินค้า</th>
+              <th>ชื่อสินค้า</th>
+              <th>จำนวน</th>
+              <th style="text-align:right">ราคาต่อหน่วย</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ book.code }}</td>
+              <td>{{ book.name }}<br>{% if request.GET.type == 'paper' %}(หนังสือเล่ม){% else %}e-Book [PDF]{% endif %}</td>
+              <td align="right">
+                <select name="qty" id="qty" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </td>
+              <td align="right" style="font-family:'Open Sans'">{% if request.GET.type == 'paper' %}<strong>{{ book.price|floatformat:0|intcomma }}</strong>{% else %}<strong>{{ book.price_ebook|floatformat:0|intcomma }}</strong>{% endif %}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h4 style="font-family:'Open Sans'">รวมเป็นเงินทั้งสิ้น <strong id="amountlabel"></strong> บาท</h4>
+      </div>
+      <div class="col-md-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <strong>ข้อมูลผู้สั่งสินค้า</strong>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label>ชื่อ-นามสกุล <span class="asteriskField">*</span></label>
+              {{ form.name|attr:"class:form-control" }}
+              <span class="help-block">
+                {% for error in form.name.errors %}{{ error }}{% endfor %}
+              </span>
+            </div>
+          </div>
+
+          <div class="panel-footer" style="overflow:hidden">
+            <div class="pull-left">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalform">
+                  <input type="hidden" name="cmd" value="_xclick">
+                  <input TYPE="hidden" name="charset" value="utf-8">
+                  <input type="hidden" name="hosted_button_id" value="PM5MMZ7JL9EZC">
+                  <input type="hidden" name="business" value="appcodetraining@gmail.com">
+                  <input type="hidden" name="currency_code" value="THB">
+                  <input type="hidden" name="item_name" value="{{ book.name }}">
+                  <input type="hidden" id="_qty" name="quantity" value="1">
+                  <input type="hidden" id="_amount" name="amount" value="{{ book.price }}">
+                  <input type="image" src="https://www.paypalobjects.com/th_TH/TH/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - วิธีชำระเงินแบบออนไลน์ที่ปลอดภัยกว่าและง่ายกว่า!">
+                </form>
+            </div>
+
+
+            <a href="#" class="btn btn-success btn-lg pull-right"><i class="fa fa-check"></i> สั่งซื้อหนังสือ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="margin-bottom:40px">
+  <div class="row">
+    <div class="col-md-12">
+      <a href="{% url 'book:detail' slug=book.slug %}">กลับหน้าที่แล้ว</a>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function formatNumber(v) {
+    return v.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+  }
+
+  $(function () {
+    var total = calprice();
+    $('#amountlabel').html(formatNumber(total+''));
+
+    $('#qty').on('change', function () {
+      total = calprice();
+      $('#amountlabel').html(formatNumber(total+''));
+    });
+
+    $('#paypalform').on('submit', function () {
+      $('#_qty').val($('#qty').val());
+      $('#_amount').val($('#unitprice').val());
+    });
+  });
+
+  function calprice() {
+    var qty = parseFloat($('#qty').val() || '0');
+    var unitprice = parseFloat($('#unitprice').val() || '0');
+    var totalamount = qty * unitprice;
+    $('#totalamount').val(totalamount);
+    return totalamount;
+  }
+</script>
+{% endblock %}
