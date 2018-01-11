@@ -11,22 +11,115 @@
   <link type="text/css" rel="stylesheet" href="/static/css/base.css">
   <script type="text/javascript" src="/static/js/jquery-2.2.4.min.js"></script>
   {% block script %}{% endblock %}
+
+  <style>
+    .modal-header {
+      border: none;
+    }
+
+    .modal-header .close {
+      margin-top: 5px;
+      margin-right: 8px;
+    }
+
+    .modal-header .modal-title {
+      font-size: 26px;
+      margin-left: 5px;
+    }
+
+    .modal-content {
+      border-radius: 0;
+      font-size: 15px;
+      padding-bottom: 25px;
+    }
+
+    .modal-content .input-lg {
+      font-size: 15px;
+      border-radius: 0;
+    }
+
+    .modal-content .input-lg:focus {
+      box-shadow: none;
+    }
+
+    .modal-content .btn-lg {
+      font-size: 15px;
+      font-family: 'THSarabunNew', sans-serif;
+    }
+
+    .modal-content .caption {
+      margin-top: 20px;
+    }
+
+    .modal-content .center-text {
+      padding: 15px 0;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-6">
-          <div class="form-inline pull-right">
-            <a href="#" class="btn btn-primary"><i class="fa fa-sign-in"></i> เข้าสู่ระบบ</a>
+  <div class="modal fade" id="loginModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+    <div class="modal-dialog" role="document">
+      <form method="post" onsubmit="return false">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title" id="loginModalLabel">เข้าสู่ระบบ</h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                  <input type="text" class="form-control input-lg" placeholder="อีเมลของท่าน" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control input-lg" placeholder="รหัสผ่าน" required>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-success btn-lg">Login</button>
+                </div>
+                <div class="center-text">หรือ</div>
+                <div class="form-group">
+                  <a href="#" class="btn btn-primary btn-block btn-lg"><i class="fa fa-facebook"></i> Facebook Login</a>
+                  <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger btn-block btn-lg"><i class="fa fa-google"></i> Google Login</a>
+                </div>
+                <div class="caption">
+                  <a href="#">สมาชิกใหม่? ลงทะเบียนที่นี่</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
-  </header>
-  <nav class="navbar navbar-default navbar-static-top">
+  </div>
+  <nav class="navbar navbar-default navbar-static-top" id="header">
+    <div class="container">
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.email }} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <div class="navbar-form">
+                <a href="{% url 'logout' %}" class="btn btn-danger btn-block" style="width:200px"><i class="fa fa-sign-out"></i> ออกจากระบบ</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+        {% else %}
+        <li>
+          <div class="navbar-form">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in"></i> เข้าสู่ระบบ</a>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <nav class="navbar navbar-default navbar-static-top" id="nav">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

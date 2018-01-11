@@ -19,11 +19,6 @@ h3 {
   font-family: 'rsu_bold', sans-serif;
 }
 
-header {
-  padding: 10px 0;
-  border-bottom: 1px solid #e7e7e7;
-}
-
 body {
   color: #555;
   line-height: 1.8em;
@@ -32,50 +27,65 @@ body {
 }
 
 /**/
-.navbar-default {
+#nav {
+  z-index: 0;
+}
+
+#nav.navbar-default {
   margin: 0;
   border: none;
   background-color: #fff;
 }
 
-.navbar-default .navbar-brand img {
+#nav.navbar-default .navbar-brand img {
   height: 24px;
   margin: 5px 0;
   image-rendering: -webkit-optimize-contrast;
 }
 
-.navbar-default .navbar-brand .subtext {
+#nav.navbar-default .navbar-brand .subtext {
   margin-top: 8px;
   color: #bbb;
   font-size: 12px;
 }
 
-.navbar-default .navbar-nav > li > a {
+#nav.navbar-default .navbar-nav > li > a {
   padding-top: 20px;
   padding-bottom: 18px;
   border-bottom: 2px solid transparent;
 }
 
-.navbar-default .navbar-nav > li:hover > a {
+#nav.navbar-default .navbar-nav > li:hover > a {
   color: #d31a1a;
 }
 
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
+#nav.navbar-default .navbar-nav > .active > a,
+#nav.navbar-default .navbar-nav > .active > a:hover,
+#nav.navbar-default .navbar-nav > .active > a:focus {
   color: #d31a1a;
   border-bottom-color: #d31a1a;
   background-color: #fff;
 }
 
 @media screen and (max-width: 980px) {
-  .navbar-default .navbar-brand img {
+  #nav.navbar-default .navbar-brand img {
     margin: 0;
   }
 
-  .navbar-default .navbar-brand .subtext {
+  #nav.navbar-default .navbar-brand .subtext {
     display: none;
   }
+}
+
+#header {
+  margin: 0;
+  border: none;
+  background-color: transparent;
+}
+
+#header .login-link {
+  display: block;
+  padding: 15px 0;
 }
 
 /**/

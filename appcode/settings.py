@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'tinymce',
     'sorl.thumbnail',
     'mce_filebrowser',
+    'social_django',
     'app',
     'course',
     'online',
@@ -37,7 +38,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'appcode.urls'
 
@@ -54,6 +63,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -88,3 +99,10 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': '400',
     'content_css': '/static/css/mce.css',
 }
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logouts'
+LOGIN_REDIRECT_URL = 'home'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '325980089247-2ntrk4gflhk54nt1kn4833qnavojrl2p.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'DmfU3xlhMEOpIGRbdbAJ886c'
