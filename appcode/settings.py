@@ -102,7 +102,6 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 LOGIN_URL = 'login'
-LOGOUT_URL = 'logouts'
 LOGIN_REDIRECT_URL = 'home'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '325980089247-2ntrk4gflhk54nt1kn4833qnavojrl2p.apps.googleusercontent.com'

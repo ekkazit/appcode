@@ -23,7 +23,7 @@
           <ul class="dropdown-menu">
             <li>
               <div class="navbar-form">
-                <a href="{% url 'logout' %}" class="btn btn-danger btn-block" style="width:200px"><i class="fa fa-sign-out"></i> ออกจากระบบ</a>
+                <a href="{% url 'logout' %}" class="btn btn-danger btn-block" style="width:150px"><i class="fa fa-sign-out"></i> ออกจากระบบ</a>
               </div>
             </li>
           </ul>
@@ -76,7 +76,7 @@
           data: $(this).serialize(),
           success: function(response) {
             if(response.result === 'success') {
-              window.location.href = '/';
+              window.location.href = '{{request.path}}';
             } else {
               alert('อีเมลหรือรหัสผ่านของท่านไม่ถูกต้อง!');
               $('#username').val('');
