@@ -104,7 +104,7 @@
         <div class="pricing">
           <h3>ราคา <span id="price"></span> บาท/เล่ม</h3>
         </div>
-        <a href="#" class="btn btn-success btn-lg btn-block">สั่งซื้อหนังสือเล่มนี้</a>
+        <a href="#" id="btncheckout" class="btn btn-success btn-lg btn-block">สั่งซื้อหนังสือเล่มนี้</a>
         <div class="remark" id="qty">( จำนวนคงเหลือ {{ book.qty }} เล่ม )</div>
         {% if book.bookoption_set.count %}
         <div class="form-group">
@@ -181,6 +181,12 @@
       } else {
         $('#qty').hide();
       }
+    });
+
+    $('#btncheckout').on('click', function () {
+      var obj = $('input[name="type"]:checked');
+      var url = '{% url "book:checkout" slug=book.slug %}?type=' + obj.attr('data-value') + '&price=' + obj.val();
+      window.location.href = url;
     });
   });
 </script>

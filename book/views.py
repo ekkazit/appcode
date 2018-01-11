@@ -24,3 +24,12 @@ def detail(request, slug):
         'related_books': related_books,
         'accounts': accounts,
     })
+
+
+def checkout(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+
+    return render(request, 'book/checkout.html', {
+        'menu': 'book',
+        'book': book,
+    })
