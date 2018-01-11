@@ -82,7 +82,7 @@
                 </div>
                 <div class="center-text">หรือ</div>
                 <div class="form-group">
-                  <a href="#" class="btn btn-primary btn-block btn-lg"><i class="fa fa-facebook"></i> Facebook Login</a>
+                  <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-block btn-lg"><i class="fa fa-facebook"></i> Facebook Login</a>
                   <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger btn-block btn-lg"><i class="fa fa-google"></i> Google Login</a>
                 </div>
                 <div class="caption">
