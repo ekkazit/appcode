@@ -87,7 +87,7 @@
           </tr>
         </tbody>
       </table>
-      <h3>รวมเป็นเงินทั้งสิ้น <span id="totalamount" style="color:#c30">2500.00</span> บาท</h3>
+      <h3>รวมเป็นเงินทั้งสิ้น <span id="totallabel" style="color:#c30">2500.00</span> บาท</h3>
     </div>
     <div class="col-md-5">
       <div class="panel panel-primary">
@@ -97,8 +97,11 @@
           </div>
         </div>
         <div class="panel-body">
-          <form action="{% url 'book:detail' slug=book.slug %}" method="post">
+          <form action="{% url 'book:checkout' slug=book.slug %}" method="post" id="checkoutform">
             {% csrf_token %}
+            <input type="hidden" id="type" name="type" value="{{ request.GET.type }}">
+            <input type="hidden" id="price" name="price" value="{% if request.GET.type == 'paper' %}{{ book.price }}{% else %}{{ book.price_ebook}}{% endif %}">
+            <input type="hidden" id="amount" name="amount">
             <div class="form-group {% if form.name.errors %}has-error{% endif %}">
               <label>ชื่อ <span class="asteriskField">*</span></label>
               {% render_field form.name class="form-control" placeholder="ชื่อของท่าน" value=user.username %}
@@ -132,15 +135,50 @@
               <input type="hidden" name="business" value="appcodetraining@gmail.com">
               <input type="hidden" name="currency_code" value="THB">
               <input type="hidden" name="item_name" value="{{ book.name }}">
-              <input type="hidden" id="_qty" name="quantity" value="1">
-              <input type="hidden" id="_amount" name="amount" value="{{ book.price }}">
+              <input type="hidden" id="_qty" name="quantity" value="0">
+              <input type="hidden" id="_amount" name="amount" value="0">
               <input type="image" src="https://www.paypalobjects.com/th_TH/TH/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - วิธีชำระเงินแบบออนไลน์ที่ปลอดภัยกว่าและง่ายกว่า!">
             </form>
           </div>
-          <a href="#" class="btn btn-success btn-lg pull-right"><i class="fa fa-check"></i> สั่งซื้อหนังสือ</a>
+          <a href="#" class="btn btn-success btn-lg pull-right" id="btnregister"><i class="fa fa-check"></i> สั่งซื้อหนังสือ</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  function calPrice() {
+    var qty = parseInt($('#qty').val(), 10);
+    var price = parseFloat($('#price').val() || '0');
+    return qty * price;
+  }
+
+  function formatNumber(v) {
+    return v.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+  }
+
+  function displayPrice() {
+    var total = calPrice();
+    $('#amount').val(total);
+    $('#totallabel').html(formatNumber(total + ''));
+  }
+
+  $(function () {
+    $('input[name="name"]').focus();
+    displayPrice();
+
+    $('#qty').on('change', function () {
+      displayPrice();
+    });
+
+    $('#paypalform').on('submit', function () {
+      $('#_qty').val($('#qty').val());
+      $('#_amount').val($('#price').val());
+    });
+
+    $('#btnregister').on('click', function () {
+      $('#checkoutform').submit();
+    });
+  });
+</script>
 {% endblock %}
