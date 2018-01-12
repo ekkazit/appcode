@@ -20,7 +20,7 @@ h3 {
 }
 
 body {
-  color: #444;
+  color: #555;
   line-height: 1.8em;
   background-color: #eee;
   font-family: 'THSarabunNew', sans-serif;
@@ -81,6 +81,7 @@ body {
   margin: 0;
   border: none;
   background-color: transparent;
+  padding: 5px 0;
 }
 
 #header .login-link {
@@ -413,7 +414,7 @@ section .lead {
 }
 
 #course .table-playlist tbody tr td {
-  height: 42px;
+  height: 46px;
   vertical-align: middle;
 }
 
