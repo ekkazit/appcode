@@ -17,81 +17,83 @@
 </div>
 <div class="block">
   <div class="container">
-    <div class="col-md-7">
-      <h1>ตะกร้าสินค้า</h1>
-      <table class="table table-bordered table-cart">
-        <thead>
-          <tr>
-            <th>รหัสสินค้า</th>
-            <th>ชื่อสินค้า</th>
-            <th>จำนวน</th>
-            <th style="text-align:right">ราคาต่อหน่วย</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ video.code }}</td>
-            <td>คอร์สออนไลน์<br>{{ video.name }} ({{ video.lessons }} บทเรียน)</td>
-            <td align="right">1</td>
-            <td align="right" style="font-family:'Open Sans'">{{ video.price|floatformat:0|intcomma }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>รวมเป็นเงินทั้งสิ้น <span id="totallabel" style="color:#c30">2500.00</span> บาท</h3>
-    </div>
-    <div class="col-md-5">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <strong>ข้อมูลการสั่งซื้อ</strong>
+    <div class="row">
+      <div class="col-md-7">
+        <h1>ตะกร้าสินค้า</h1>
+        <table class="table table-bordered table-cart">
+          <thead>
+            <tr>
+              <th width="15%">รหัสสินค้า</th>
+              <th>ชื่อสินค้า</th>
+              <th>จำนวน</th>
+              <th style="text-align:right" width="18%">ราคา/หน่วย</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ video.code }}</td>
+              <td>คอร์สออนไลน์<br>{{ video.name }} ({{ video.lessons }} บทเรียน)</td>
+              <td align="right">1</td>
+              <td align="right" style="font-family:'Open Sans'">{{ video.price|floatformat:0|intcomma }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>รวมเป็นเงินทั้งสิ้น <span id="totallabel" style="color:#c30">2500.00</span> บาท</h3>
+      </div>
+      <div class="col-md-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <strong>ข้อมูลการสั่งซื้อ</strong>
+            </div>
           </div>
-        </div>
-        <div class="panel-body">
-          <form action="{% url 'online:checkout' slug=video.slug %}" method="post" id="checkoutform">
-            {% csrf_token %}
-            <input type="hidden" id="id" name="id" value="{{ video.id }}">
-            <input type="hidden" id="type" name="type" value="{{ request.GET.type }}">
-            <input type="hidden" id="price" name="price" value="{{ video.price }}">
-            <input type="hidden" id="amount" name="amount">
-            <input type="hidden" id="unit" name="unit">
-            <div class="form-group {% if form.name.errors %}has-error{% endif %}">
-              <label>ชื่อ <span class="asteriskField">*</span></label>
-              {% render_field form.name class="form-control" placeholder="ชื่อของท่าน" value=user.username %}
-              <span class="help-block">
-                {% for error in form.name.errors %}{{ error }}{% endfor %}
-              </span>
-            </div>
-            <div class="form-group {% if form.email.errors %}has-error{% endif %}">
-              <label>อีเมล <span class="asteriskField">*</span></label>
-              {% render_field form.email class="form-control" placeholder="กรอกอีเมล" value=user.email %}
-              <span class="help-block">
-                {% for error in form.email.errors %}{{ error }}{% endfor %}
-              </span>
-            </div>
-            <div class="form-group">
-              <label>เบอร์โทรศัพท์</label>
-              {% render_field form.phone class="form-control" placeholder="เบอร์ติดต่อ" %}
-            </div>
-          </form>
-        </div>
-        <div class="panel-footer" style="overflow:hidden">
-          <div class="pull-left">
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalform">
-              <input type="hidden" name="cmd" value="_xclick">
-              <input TYPE="hidden" name="charset" value="utf-8">
-              <input type="hidden" name="hosted_button_id" value="PM5MMZ7JL9EZC">
-              <input type="hidden" name="business" value="appcodetraining@gmail.com">
-              <input type="hidden" name="currency_code" value="THB">
-              <input type="hidden" name="item_name" value="{{ video.name }}">
-              <input type="hidden" id="_qty" name="quantity" value="0">
-              <input type="hidden" id="_amount" name="amount" value="0">
-              <input type="image" src="https://www.paypalobjects.com/th_TH/TH/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - วิธีชำระเงินแบบออนไลน์ที่ปลอดภัยกว่าและง่ายกว่า!">
+          <div class="panel-body">
+            <form action="{% url 'online:checkout' slug=video.slug %}" method="post" id="checkoutform">
+              {% csrf_token %}
+              <input type="hidden" id="id" name="id" value="{{ video.id }}">
+              <input type="hidden" id="type" name="type" value="{{ request.GET.type }}">
+              <input type="hidden" id="price" name="price" value="{{ video.price }}">
+              <input type="hidden" id="amount" name="amount">
+              <input type="hidden" id="unit" name="unit">
+              <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+                <label>ชื่อ <span class="asteriskField">*</span></label>
+                {% render_field form.name class="form-control" placeholder="ชื่อของท่าน" value=user.username %}
+                <span class="help-block">
+                  {% for error in form.name.errors %}{{ error }}{% endfor %}
+                </span>
+              </div>
+              <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                <label>อีเมล <span class="asteriskField">*</span></label>
+                {% render_field form.email class="form-control" placeholder="กรอกอีเมล" value=user.email %}
+                <span class="help-block">
+                  {% for error in form.email.errors %}{{ error }}{% endfor %}
+                </span>
+              </div>
+              <div class="form-group">
+                <label>เบอร์โทรศัพท์</label>
+                {% render_field form.phone class="form-control" placeholder="เบอร์ติดต่อ" %}
+              </div>
             </form>
           </div>
-          <a href="#" class="btn btn-success btn-lg pull-right" id="btnregister"><i class="fa fa-check"></i> สั่งซื้อคอร์สนี้</a>
+          <div class="panel-footer" style="overflow:hidden">
+            <div class="pull-left">
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalform">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input TYPE="hidden" name="charset" value="utf-8">
+                <input type="hidden" name="hosted_button_id" value="PM5MMZ7JL9EZC">
+                <input type="hidden" name="business" value="appcodetraining@gmail.com">
+                <input type="hidden" name="currency_code" value="THB">
+                <input type="hidden" name="item_name" value="{{ video.name }}">
+                <input type="hidden" id="_qty" name="quantity" value="0">
+                <input type="hidden" id="_amount" name="amount" value="0">
+                <input type="image" src="https://www.paypalobjects.com/th_TH/TH/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - วิธีชำระเงินแบบออนไลน์ที่ปลอดภัยกว่าและง่ายกว่า!">
+              </form>
+            </div>
+            <a href="#" class="btn btn-success btn-lg pull-right" id="btnregister"><i class="fa fa-check"></i> สั่งซื้อคอร์สนี้</a>
+          </div>
         </div>
+        <a href="{% url 'online:detail' slug=video.slug %}" style="text-decoration:none"><i class="fa fa-chevron-left"></i> กลับหน้าที่แล้ว</a>
       </div>
-      <a href="{% url 'online:detail' slug=video.slug %}" style="text-decoration:none"><i class="fa fa-chevron-left"></i> กลับหน้าที่แล้ว</a>
     </div>
   </div>
 </div>

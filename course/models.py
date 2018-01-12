@@ -61,3 +61,77 @@ class CourseOption(models.Model):
 
     def __unicode__(self):
         return self.option
+
+
+class CourseOpen(models.Model):
+    course = models.ForeignKey(Course)
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=150, null=True, blank=True)
+    times = models.CharField(max_length=50, null=True, blank=True)
+    price = models.DecimalField(max_digits=15, decimal_places=2, default=0)
+    promotion = models.CharField(max_length=50, null=True, blank=True)
+    published = models.BooleanField(default=False)
+    finished = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'course_open'
+        verbose_name_plural = 'CourseOpen'
+
+    def __unicode__(self):
+        return self.name
+
+
+class CourseBooking(models.Model):
+    course = models.ForeignKey(Course)
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    company = models.EmailField(max_length=100, null=True, blank=True)
+    persons = models.IntegerField(default=0)
+    booking_date = models.DateTimeField(null=True, blank=True)
+    completed = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'course_booking'
+        verbose_name_plural = 'CourseBooking'
+
+    def __unicode__(self):
+        return self.name
+
+
+class CourseRegister(models.Model):
+    course_open = models.ForeignKey(CourseOpen)
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    company = models.EmailField(max_length=100, null=True, blank=True)
+    persons = models.IntegerField(default=0)
+    reg_date = models.DateTimeField(null=True, blank=True)
+    paid = models.BooleanField(default=False)
+    paid_date = models.DateTimeField(null=True, blank=True)
+    paid_via = models.CharField(max_length=50, null=True, blank=True)
+    completed = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'course_register'
+        verbose_name_plural = 'CourseRegister'
+
+    def __unicode__(self):
+        return self.name
+
+
+class Quotation(models.Model):
+    course = models.ForeignKey(Course)
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    company = models.EmailField(max_length=100, null=True, blank=True)
+    persons = models.IntegerField(default=0)
+    completed = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'quotation'
+        verbose_name_plural = 'Quotation'
+
+    def __unicode__(self):
+        return self.name

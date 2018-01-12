@@ -736,6 +736,7 @@ section .lead {
   border-radius: 0;
   font-size: 15px;
   padding-bottom: 25px;
+  box-shadow: none;
 }
 
 .modal-content .input-lg {
