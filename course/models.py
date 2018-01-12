@@ -124,8 +124,8 @@ class Quotation(models.Model):
     course = models.ForeignKey(Course)
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
+    company = models.CharField(max_length=100)
     phone = models.CharField(max_length=20, null=True, blank=True)
-    company = models.CharField(max_length=100, null=True, blank=True)
     persons = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
 

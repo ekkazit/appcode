@@ -47,8 +47,8 @@ class QuotationForm(forms.ModelForm):
             'required': u'กรุณากรอกอีเมล์',
             'invalid': u'รูปแบบของอีเมล์ไม่ถูกต้อง',
         }
-        self.fields['persons'].error_messages = {
-            'required': u'กรุณาระบุจำนวนผู้เข้าอบรม',
+        self.fields['company'].error_messages = {
+            'required': u'กรุณากรอกชื่อหน่วยงาน',
         }
 
 
