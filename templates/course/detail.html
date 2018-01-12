@@ -84,18 +84,17 @@
           <div style="margin-bottom:30px">( ราคานี้ยังไม่รวมภาษีมูลค่าเพิ่ม )</div>
         </div>
         <!-- ./ course pricing -->
-        <!--
-        <div class="form-group">
-          <h3>ลงทะเบียน</h3>
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-calendar"></i> รอบที่ 1 วันที่ 22-26 มค.</a>
-              <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-calendar"></i> รอบที่ 2 วันที่ 30-31 มค.</a>
-            </div>
+        {% if course.get_course_opens.count %}
+          <div class="form-group">
+            <h3>ลงทะเบียน</h3>
+            {% for o in course.get_course_opens %}
+              <a href="{% url 'course:register' slug=course.slug open_id=o.id %}?round={{ forloop.counter }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-calendar"></i> รอบที่ {{ forloop.counter }} : {{ o.times }}</a>
+            {% endfor %}
           </div>
-        </div> -->
-        <a href="{% url 'course:booking' slug=course.slug %}?id={{ request.GET.id }}" class="btn btn-primary btn-lg btn-block">สมัครเรียนคอร์สนี้</a>
-        <a href="{% url 'course:quotation' slug=course.slug %}?id={{ request.GET.id }}" class="btn btn-warning btn-lg btn-block"><i class="fa fa-copy"></i> ขอใบเสนอราคา</a>
+        {% else %}
+          <a href="{% url 'course:booking' slug=course.slug %}?id={{ request.GET.id }}" class="btn btn-primary btn-lg btn-block">สมัครเรียนคอร์สนี้</a>
+          <a href="{% url 'course:quotation' slug=course.slug %}?id={{ request.GET.id }}" class="btn btn-warning btn-lg btn-block"><i class="fa fa-copy"></i> ขอใบเสนอราคา</a>
+        {% endif %}
         <!-- ./ course booking / registration or quotations -->
         {% if course.courseoption_set.count %}
         <div class="form-group">

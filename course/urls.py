@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^(?P<slug>[\w-]+)/booking/$', views.booking, name='booking'),
     url(r'^(?P<slug>[\w-]+)/quotation/$', views.quotation, name='quotation'),
     url(r'^(?P<slug>[\w-]+)/complete/$', views.complete, name='complete'),
+    url(r'^(?P<slug>[\w-]+)/(?P<open_id>[\d]+)/register/$', views.register, name='register'),
 ]

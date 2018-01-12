@@ -37,6 +37,9 @@ class Course(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_course_opens(self):
+        return self.courseopen_set.filter(published=True)
+
 
 class CourseSlider(models.Model):
     course = models.ForeignKey(Course)

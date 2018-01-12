@@ -18,16 +18,21 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        {% if name == 'booking' %}
-          <div class="alert alert-success" style="text-align: center">
-            <strong>[ สมัครเรียนเรียบร้อยแล้ว ]</strong>
-            <div style="margin-top:20px">คุณได้สมัครเรียนในหลักสูตร <strong>[{{ course.code }}] {{ course.name }}</strong> เป็นที่เรียบร้อยแล้ว</div>
-          </div>
-        {% elif name == "quotation" %}
-          <div class="alert alert-success" style="text-align: center">
-            <strong>[ ส่งข้อมูลเรียบร้อยแล้ว ]</strong>
-            <div style="margin-top:20px">ส่งข้อมูลใบเสนอราคาสำหรับหลักสูตร <strong>[{{ course.code }}] {{ course.name }}</strong> เรียบร้อยแล้ว</div>
-          </div>
+        {% if request.GET.name == 'booking' %}
+        <div class="alert alert-success" style="text-align: center">
+          <strong>[ สมัครเรียนเรียบร้อยแล้ว ]</strong>
+          <div style="margin-top:20px">คุณได้สมัครเรียนในหลักสูตร <strong>[{{ course.code }}] {{ course.name }}</strong> เป็นที่เรียบร้อยแล้ว</div>
+        </div>
+        {% elif request.GET.name == "quotation" %}
+        <div class="alert alert-success" style="text-align: center">
+          <strong>[ ส่งข้อมูลเรียบร้อยแล้ว ]</strong>
+          <div style="margin-top:20px">ส่งข้อมูลใบเสนอราคาสำหรับหลักสูตร <strong>[{{ course.code }}] {{ course.name }}</strong> เรียบร้อยแล้ว</div>
+        </div>
+        {% elif request.GET.name == "register" %}
+        <div class="alert alert-success" style="text-align: center">
+          <strong>[ ลงทะเบียนเรียบร้อยแล้ว ]</strong>
+          <div style="margin-top:20px">คุณได้ลงทะเบียนเรียนหลักสูตร <strong>[{{ course.code }}] {{ course.name }}</strong> เป็นที่เรียบร้อยแล้ว<br>โปรดตรวจสอบรายละเอียดทางอีเมลของท่าน และทางเราจะติดต่อกลับไปอีกครั้ง</div>
+        </div>
         {% endif %}
         <div style="margin-top:60px">
           <a href="{% url 'course:index' %}"><i class="fa fa-home"></i> กลับไปยังหน้าแรก</a>

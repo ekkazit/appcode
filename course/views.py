@@ -88,9 +88,32 @@ def quotation(request, slug):
 
 def complete(request, slug):
     course = get_object_or_404(Course, slug=slug)
+    accounts = Account.objects.all()
 
     return render(request, 'course/complete.html', {
         'menu': 'course',
         'course': course,
-        'name': request.GET.get('name'),
+        'accouts': accounts,
+    })
+
+
+def register(request, slug, open_id):
+    course = get_object_or_404(Course, slug=slug)
+    course_open = get_object_or_404(CourseOpen, id=open_id)
+
+    if request.method == 'POST':
+        form = CourseRegisterForm(request.POST, use_required_attribute=False)
+        if form.is_valid():
+            register = form.save(commit=False)
+            register.course_open_id = request.POST.get('id')
+            register.reg_date = datetime.now()
+            register.save()
+            return HttpResponseRedirect(reverse('course:complete', kwargs={'slug': course.slug}) + '?name=register')
+    else:
+        form = CourseRegisterForm(initial={'register_date': datetime.now()}, use_required_attribute=False)
+    return render(request, 'course/register.html', {
+        'menu': 'course',
+        'course': course,
+        'course_open': course_open,
+        'form': form,
     })
