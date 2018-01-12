@@ -94,8 +94,8 @@
             </div>
           </div>
         </div> -->
-        <a href="#" class="btn btn-primary btn-lg btn-block">สมัครเรียนคอร์สนี้</a>
-        <a href="#" class="btn btn-warning btn-lg btn-block"><i class="fa fa-copy"></i> ขอใบเสนอราคา</a>
+        <a href="{% url 'course:booking' slug=course.slug %}?id={{ request.GET.id }}" class="btn btn-primary btn-lg btn-block">สมัครเรียนคอร์สนี้</a>
+        <a href="{% url 'course:quotation' slug=course.slug %}?id={{ request.GET.id }}" class="btn btn-warning btn-lg btn-block"><i class="fa fa-copy"></i> ขอใบเสนอราคา</a>
         <!-- ./ course booking / registration or quotations -->
         {% if course.courseoption_set.count %}
         <div class="form-group">

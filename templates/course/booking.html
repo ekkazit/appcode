@@ -1,2 +1,92 @@
 {% extends "master/base.html" %}
-{% load humanize %}
+{% load humanize widget_tweaks %}
+
+{% block script %}
+  <link type="text/css" rel="stylesheet" href="/static/vendor/datepicker/css/bootstrap-datepicker.min.css">
+  <script type="text/javascript" src="/static/vendor/datepicker/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="/static/vendor/datepicker/locales/bootstrap-datepicker.th.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="subnav" class="subnav-course">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'course:index' %}?id={{ request.GET.id }}">คอร์สอบรม</a></li>
+        <li><a href="{% url 'course:detail' slug=course.slug %}?id={{ request.GET.id }}">{{ course.code }}</a></li>
+        <li class="active">สมัครเรียน</li>
+      </ul>
+      <h1>สมัครเรียน</h1>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form method="post" action="{% url 'course:booking' slug=course.slug %}">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ course.id }}">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <strong>หลักสูตร [{{ course.code }}] {{ course.name }}</strong>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+                <label>ชื่อ <span class="asteriskField">*</span></label>
+                {% render_field form.name class="form-control" placeholder="ชื่อของท่าน" value=user.username %}
+                <span class="help-block">
+                  {% for error in form.name.errors %}{{ error }}{% endfor %}
+                </span>
+              </div>
+              <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                <label>อีเมล <span class="asteriskField">*</span></label>
+                {% render_field form.email class="form-control" placeholder="กรอกอีเมล" value=user.email %}
+                <span class="help-block">
+                  {% for error in form.email.errors %}{{ error }}{% endfor %}
+                </span>
+              </div>
+              <div class="form-group">
+                <label>เบอร์โทรศัพท์</label>
+                {% render_field form.phone class="form-control" placeholder="เบอร์ติดต่อ" %}
+              </div>
+              <div class="form-group">
+                <label>ชื่อบริษัท/หน่วยงาน</label>
+                {% render_field form.company class="form-control" placeholder="ชื่อหน่วยงานของท่าน" %}
+              </div>
+              <div class="form-group">
+                <label>จำนวนผู้เข้าอบรม</label>
+                {{ form.persons|attr:"class:form-control" }}
+              </div>
+              <div class="form-group">
+                <label>วันที่อบรม (ที่ท่านสะดวก)</label>
+                {% render_field form.booking_date class="form-control datepicker" %}
+              </div>
+              <div style="text-align:center">
+                <button type="submit" class="btn btn-success btn-lg">บันทึกข้อมูล</button>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:40px"><a href="{% url 'course:detail' slug=course.slug %}?id={{ request.GET.id }}"><i class="fa fa-chevron-left"></i> กลับไปยังหน้าที่แล้ว</a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(function () {
+  $('input[name="name"]').focus();
+
+  $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    orientation: 'top auto',
+    language: 'th',
+    autoclose: true,
+    todayHighlight: true,
+  });
+});
+</script>
+{% endblock %}

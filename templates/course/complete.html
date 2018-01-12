@@ -1,0 +1,39 @@
+{% extends "master/base.html" %}
+
+{% block content %}
+<div id="subnav" class="subnav-course">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'course:index' %}?id={{ request.GET.id }}">คอร์สอบรม</a></li>
+        <li><a href="{% url 'course:detail' slug=course.slug %}?id={{ request.GET.id }}">{{ course.code }}</a></li>
+        <li class="active">จบการทำงาน</li>
+      </ul>
+      <h1>จบการทำงาน</h1>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {% if name == 'booking' %}
+          <div class="alert alert-success" style="text-align: center">
+            <strong>[ สมัครเรียนเรียบร้อยแล้ว ]</strong>
+            <div style="margin-top:20px">คุณได้สมัครเรียนในหลักสูตร <strong>[{{ course.code }}] {{ course.name }}</strong> เป็นที่เรียบร้อยแล้ว</div>
+          </div>
+        {% elif name == "quotation" %}
+          <div class="alert alert-success" style="text-align: center">
+            <strong>[ ส่งข้อมูลเรียบร้อยแล้ว ]</strong>
+            <div style="margin-top:20px">ส่งข้อมูลใบเสนอราคาสำหรับหลักสูตร <strong>[{{ course.code }}] {{ course.name }}</strong> เรียบร้อยแล้ว</div>
+          </div>
+        {% endif %}
+        <div style="margin-top:60px">
+          <a href="{% url 'course:index' %}"><i class="fa fa-home"></i> กลับไปยังหน้าแรก</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

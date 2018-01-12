@@ -53,14 +53,14 @@ def detail(request, slug):
 def booking(request, slug):
     course = get_object_or_404(Course, slug=slug)
     if request.method == 'POST':
-        form = CoureBookingForm(request.POST, use_required_attribute=False)
+        form = CourseBookingForm(request.POST, use_required_attribute=False)
         if form.is_valid():
             booking = form.save(commit=False)
             booking.course_id = request.POST.get('id')
             booking.save()
             return HttpResponseRedirect(reverse('course:complete', kwargs={'slug': course.slug}) + '?name=booking')
     else:
-        form = CoureBookingForm(initial={'booking_date': datetime.now()}, use_required_attribute=False)
+        form = CourseBookingForm(initial={'booking_date': datetime.now()}, use_required_attribute=False)
     return render(request, 'course/booking.html', {
         'menu': 'course',
         'form': form,
