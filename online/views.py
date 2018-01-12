@@ -23,6 +23,15 @@ def detail(request, slug):
     ids = video.tags.values_list('id', flat=True)
     related_videos = Video.objects.filter(tags__in=ids).distinct().exclude(id=video.id)[:5]
 
+    is_locked = False
+    if video.price:
+        is_locked = True
+
+    if request.user.is_authenticated():
+        register = VideoRegister.objects.filter(email=request.user.email, video_id=video.id).first()
+        if register and register.authorized:
+            is_locked = False
+
     autoplay = False
     player= None
     pl = request.GET.get('pl')
@@ -42,6 +51,7 @@ def detail(request, slug):
         'player': player,
         'autoplay': autoplay,
         'active_pl': active_pl,
+        'is_locked': is_locked,
     })
 
 

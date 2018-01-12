@@ -46,10 +46,14 @@
                 <td>{{ c.title }}</td>
                 <td>{% if c.preview %}<span class="label label-info">ตัวอย่าง</span>{% endif %}</td>
                 <td>
-                  {% if request.GET.pl|add:0 == c.id or active_pl == c.id %}
-                  <span class="label label-default">กำลังเล่น</span>
+                  {% if is_locked and c.preview == False %}
+                    <i class="fa fa-lock" style="color:#999"></i>
                   {% else %}
-                  <a href="{% url 'online:detail' slug=video.slug %}?pl={{c.id}}"><i class="fa fa-play-circle-o"></i></a>
+                    {% if request.GET.pl|add:0 == c.id or active_pl == c.id %}
+                    <span class="label label-default">กำลังเล่น</span>
+                    {% else %}
+                    <a href="{% url 'online:detail' slug=video.slug %}?pl={{c.id}}"><i class="fa fa-play-circle-o"></i></a>
+                    {% endif %}
                   {% endif %}
                 </td>
                 <td><i class="fa fa-clock-o"></i> {{ c.time }}</td>

@@ -25,4 +25,4 @@ class VideoRegisterAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Video, VideoAdmin)
-admin.site.register( VideoRegister, VideoRegisterAdmin)
+admin.site.register(VideoRegister, VideoRegisterAdmin)

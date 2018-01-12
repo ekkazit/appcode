@@ -76,4 +76,4 @@ class VideoRegister(models.Model):
         verbose_name_plural = 'VideoRegister'
 
     def __unicode__(self):
-        return self.member.name
+        return self.name
