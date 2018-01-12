@@ -760,3 +760,46 @@ section .lead {
   text-align: center;
   margin-bottom: 15px;
 }
+
+/**/
+.block {
+  padding: 40px 0;
+  margin-bottom: 40px;
+}
+
+.block h1 {
+  margin-bottom: 40px;
+}
+
+.block .panel {
+  margin-top: 40px;
+}
+
+.block .table-cart {
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.block .table-cart thead tr th {
+  color: #fff;
+  background-color: #999;
+  border-bottom: none;
+}
+
+.block .table-cart tbody tr td {
+  line-height: 1.8em;
+}
+
+.block .has-error .form-control {
+  box-shadow: none;
+  border-color: #d40c0c;
+}
+
+.block .has-error .help-block {
+  color: #d40c0c;
+}
+
+.block .form-group .asteriskField {
+  color: #d40c0c;
+  margin-left: -2px;
+}

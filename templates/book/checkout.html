@@ -1,38 +1,6 @@
 {% extends "master/base.html" %}
 {% load humanize widget_tweaks %}
 
-{% block script %}
-<style>
-  .block {
-    padding: 40px 0;
-    margin-bottom: 40px;
-  }
-
-  .block h1 {
-    margin-bottom: 40px;
-  }
-
-  .block .panel {
-    margin-top: 40px;
-  }
-
-  .block .table-cart {
-    font-size: 16px;
-    background-color: #fff;
-  }
-
-  .block .table-cart thead tr th {
-    color: #fff;
-    background-color: #999;
-    border-bottom: none;
-  }
-
-  .block .table-cart tbody tr td {
-    line-height: 1.8em;
-  }
-</style>
-{% endblock %}
-
 {% block content %}
 <div id="subnav" class="subnav-book">
   <div class="subnav-inner">
@@ -99,9 +67,11 @@
         <div class="panel-body">
           <form action="{% url 'book:checkout' slug=book.slug %}" method="post" id="checkoutform">
             {% csrf_token %}
+            <input type="hidden" id="id" name="id" value="{{ book.id }}">
             <input type="hidden" id="type" name="type" value="{{ request.GET.type }}">
             <input type="hidden" id="price" name="price" value="{% if request.GET.type == 'paper' %}{{ book.price }}{% else %}{{ book.price_ebook}}{% endif %}">
             <input type="hidden" id="amount" name="amount">
+            <input type="hidden" id="unit" name="unit">
             <div class="form-group {% if form.name.errors %}has-error{% endif %}">
               <label>ชื่อ <span class="asteriskField">*</span></label>
               {% render_field form.name class="form-control" placeholder="ชื่อของท่าน" value=user.username %}
@@ -143,6 +113,7 @@
           <a href="#" class="btn btn-success btn-lg pull-right" id="btnregister"><i class="fa fa-check"></i> สั่งซื้อหนังสือ</a>
         </div>
       </div>
+      <a href="{% url 'book:detail' slug=book.slug %}" style="text-decoration:none"><i class="fa fa-chevron-left"></i> กลับหน้าที่แล้ว</a>
     </div>
   </div>
 </div>
@@ -177,6 +148,7 @@
     });
 
     $('#btnregister').on('click', function () {
+      $('#unit').val($('#qty').val());
       $('#checkoutform').submit();
     });
   });

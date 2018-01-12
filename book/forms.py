@@ -11,6 +11,10 @@ class RegisterForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
-        self.fields['name'].error_messages = {'required': u'กรุณากรอกชื่อ-นามสกุล'}
-        self.fields['phone'].error_messages = {'required': u'กรุณากรอกเบอร์โทรศัพท์'}
-        self.fields['email'].error_messages = {'required': u'กรุณากรอกอีเมล์', 'invalid': u'รูปแบบของอีเมล์ไม่ถูกต้อง'}
+        self.fields['name'].error_messages = {
+            'required': u'กรุณากรอกชื่อของท่าน',
+        }
+        self.fields['email'].error_messages = {
+            'required': u'กรุณากรอกอีเมล์',
+            'invalid': u'รูปแบบของอีเมล์ไม่ถูกต้อง',
+        }

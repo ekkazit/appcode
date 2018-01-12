@@ -61,9 +61,12 @@ class BookOption(models.Model):
 class Register(models.Model):
     book = models.ForeignKey(Book)
     name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(max_length=100)
     address = models.TextField(null=True, blank=True)
+    unit = models.IntegerField(default=0)
+    price = models.DecimalField(max_digits=15, decimal_places=2, default=0)
+    amount = models.DecimalField(max_digits=15, decimal_places=2, default=0)
     reg_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     paid = models.BooleanField(default=False)
     paid_date = models.DateTimeField(null=True, blank=True)
