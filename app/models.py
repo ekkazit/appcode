@@ -1,4 +1,6 @@
 from django.db import models
+from tinymce.models import HTMLField
+
 
 class Account(models.Model):
     name = models.CharField(max_length=50)
@@ -34,6 +36,7 @@ class Teacher(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     fullname = models.CharField(max_length=50, null=True, blank=True)
     position = models.CharField(max_length=150, null=True, blank=True)
+    profile = HTMLField(null=True, blank=True)
     image = models.FileField(upload_to='images/teacher', null=True, blank=True)
 
     class Meta:

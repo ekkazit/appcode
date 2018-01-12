@@ -450,6 +450,10 @@ section .lead {
   padding-left: 0;
 }
 
+#course .profile a {
+  text-decoration: none;
+}
+
 /**/
 .online {
   background-color: #fff;

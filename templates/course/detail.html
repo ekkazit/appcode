@@ -116,7 +116,10 @@
             <div class="profile-item">
               <h4>{{ t.fullname }}</h4>
               <div class="caption">{{ t.position }}</div>
-              <a href="#">ดูโปรไฟล์แบบเต็ม</a>
+              <a style="cursor:pointer" data-toggle="collapse" data-target="#demo{{forloop.counter}}">ดูโปรไฟล์แบบเต็ม</a>
+              <div id="demo{{forloop.counter}}" class="collapse">
+                {{ t.profile|default_if_none:''|safe }}
+              </div>
             </div>
           </div>
           {% endfor %}
