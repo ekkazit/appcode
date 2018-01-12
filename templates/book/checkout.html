@@ -32,7 +32,7 @@
           <tbody>
             <tr>
               <td>{{ book.code }}</td>
-              <td>หนังสือ<br>{{ book.name }} / {% if request.GET.type == 'paper' %}(หนังสือเล่ม){% else %}e-Book [PDF]{% endif %}</td>
+              <td>หนังสือ: {{ book.name }} / {% if request.GET.type == 'paper' %}(หนังสือเล่ม){% else %}e-Book [PDF]{% endif %}</td>
               <td align="right">
                 <select name="qty" id="qty" class="form-control">
                   <option value="1">1</option>
