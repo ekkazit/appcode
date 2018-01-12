@@ -20,7 +20,7 @@ class VideoAdmin(admin.ModelAdmin):
 
 
 class VideoRegisterAdmin(admin.ModelAdmin):
-    list_display = ['video', 'member', 'register_date', 'paid', 'paid_date', 'paid_via', 'authorized']
+    list_display = ['video', 'name', 'email', 'reg_date', 'paid', 'paid_date', 'paid_via', 'authorized']
     list_filter = ['paid', 'authorized']
 
 

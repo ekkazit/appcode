@@ -67,7 +67,7 @@
         <div class="pricing">
           <h3>ราคา <span>{{ video.price|floatformat:0|intcomma }}</span> บาท</h3>
         </div>
-        <a href="#" class="btn btn-success btn-lg btn-block">สั่งซื้อคอร์สนี้</a>
+        <a href="{% url 'online:checkout' slug=video.slug %}" class="btn btn-success btn-lg btn-block">สั่งซื้อคอร์สนี้</a>
         <div class="remark">( ดูซ้ำกี่ครั้งก็ได้ แบบไม่จำกัด )</div>
         {% endif %}
         <!-- ./price & ordering -->
@@ -143,7 +143,6 @@
 </div>
 {% if player %}
   <script type="text/javascript">
-
     function playVideo() {
       var auto = '{{ autoplay }}';
       var player = flowplayer("#player", {

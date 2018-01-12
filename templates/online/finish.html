@@ -1,1 +1,59 @@
 {% extends "master/base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div id="subnav" class="subnav-online">
+  <div class="subnav-inner">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'online:index' %}">คอร์สออนไลน์</a></li>
+        <li><a href="{% url 'online:detail' slug=video.slug %}">{{ video.code }}</a></li>
+        <li class="active">จบการสั่งซื้อ</li>
+      </ul>
+      <h1>จบการสั่งซื้อ</h1>
+    </div>
+  </div>
+</div>
+<div id="course">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="alert alert-{{ msg.tags }} alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span>{{ msg }}</span>
+            </div>
+          {% endfor %}
+        {% endif %}
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <strong>ชำระเงิน <span>{{ register.amount }}</span> บาท</strong>
+            </div>
+          </div>
+          <div class="panel-body">
+            <h4>วิธีการชำระเงิน</h4>
+            <div style="margin-bottom:15px">ชำระสินค้าโดยการโอนเงินมายังบัญชีใดบัญชีหนึ่ง ดังนี้</div>
+            <hr>
+            <ul class="bank-list">
+              {% for b in accounts %}
+              <li>
+                {% if b.image %}<img src="{{ b.image.url }}" alt="{{ b.bank }}">{% endif %}
+                <span>{{ b.bank }} สาขา{{ b.branch }} บัญชี <strong>{{ b.acc_code }}</strong> {{ b.type }} {{ b.acc_name }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+            <div class="alert alert-warning" style="margin: 20px 0 0 0">
+              <div>โอนเสร็จแล้ว แจ้งการโอนเงินได้ที่</div>
+              <strong>อีเมล: <a href="mailto:appcodetraining@gmail.com?subject=แจ้งชำระเงินค่าคอร์สออนไลน์ [{{video.code}}] {{ video.name }}  [ORDER# {{ register.id }}]">appcodetraining@gmail.com</a></strong> หรือ <strong>LINE: @appcodetraining</strong><br>เราจะดำเนินเปิดให้ท่านสามารถเรียนคอร์สนี้ครับ
+            </div>
+          </div>
+        </div>
+        <a href="{% url 'online:index' %}"><i class="fa fa-home"></i> กลับไปยังหน้าแรก</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

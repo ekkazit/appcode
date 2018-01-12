@@ -2,16 +2,16 @@
 {% load humanize widget_tweaks %}
 
 {% block content %}
-<div id="subnav" class="subnav-book">
+<div id="subnav" class="subnav-online">
   <div class="subnav-inner">
     <div class="container">
       <ul class="breadcrumb">
         <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i></a></li>
-        <li><a href="{% url 'book:index' %}">หนังสือ</a></li>
-        <li><a href="{% url 'book:detail' slug=book.slug %}">{{ book.code }}</a></li>
+        <li><a href="{% url 'online:index' %}">คอร์สออนไลน์</a></li>
+        <li><a href="{% url 'online:detail' slug=video.slug %}">{{ video.code }}</a></li>
         <li class="active">การสั่งซื้อ</li>
       </ul>
-      <h1>สั่งซื้อหนังสือ</h1>
+      <h1>สั่งซื้อคอร์สออนไลน์</h1>
     </div>
   </div>
 </div>
@@ -30,28 +30,10 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{ book.code }}</td>
-            <td>หนังสือ<br>{{ book.name }} / {% if request.GET.type == 'paper' %}(หนังสือเล่ม){% else %}e-Book [PDF]{% endif %}</td>
-            <td align="right">
-              <select name="qty" id="qty" class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-              </select>
-            </td>
-            <td align="right" style="font-family:'Open Sans'">{% if request.GET.type == 'paper' %}<strong>{{ book.price|floatformat:0|intcomma }}</strong>{% else %}<strong>{{ book.price_ebook|floatformat:0|intcomma }}</strong>{% endif %}</td>
+            <td>{{ video.code }}</td>
+            <td>คอร์สออนไลน์<br>{{ video.name }} ({{ video.lessons }} บทเรียน)</td>
+            <td align="right">1</td>
+            <td align="right" style="font-family:'Open Sans'">{{ video.price|floatformat:0|intcomma }}</td>
           </tr>
         </tbody>
       </table>
@@ -65,11 +47,11 @@
           </div>
         </div>
         <div class="panel-body">
-          <form action="{% url 'book:checkout' slug=book.slug %}" method="post" id="checkoutform">
+          <form action="{% url 'online:checkout' slug=video.slug %}" method="post" id="checkoutform">
             {% csrf_token %}
-            <input type="hidden" id="id" name="id" value="{{ book.id }}">
+            <input type="hidden" id="id" name="id" value="{{ video.id }}">
             <input type="hidden" id="type" name="type" value="{{ request.GET.type }}">
-            <input type="hidden" id="price" name="price" value="{% if request.GET.type == 'paper' %}{{ book.price }}{% else %}{{ book.price_ebook}}{% endif %}">
+            <input type="hidden" id="price" name="price" value="{{ video.price }}">
             <input type="hidden" id="amount" name="amount">
             <input type="hidden" id="unit" name="unit">
             <div class="form-group {% if form.name.errors %}has-error{% endif %}">
@@ -90,10 +72,6 @@
               <label>เบอร์โทรศัพท์</label>
               {% render_field form.phone class="form-control" placeholder="เบอร์ติดต่อ" %}
             </div>
-            <div class="form-group">
-              <label>สถานที่จัดส่ง</label>
-              {{ form.address|attr:"class:form-control"|attr:"rows:4"|attr:"placeholder:กรอกที่อยู่เพื่อจัดส่งสินค้า" }}
-            </div>
           </form>
         </div>
         <div class="panel-footer" style="overflow:hidden">
@@ -104,22 +82,22 @@
               <input type="hidden" name="hosted_button_id" value="PM5MMZ7JL9EZC">
               <input type="hidden" name="business" value="appcodetraining@gmail.com">
               <input type="hidden" name="currency_code" value="THB">
-              <input type="hidden" name="item_name" value="{{ book.name }}">
+              <input type="hidden" name="item_name" value="{{ video.name }}">
               <input type="hidden" id="_qty" name="quantity" value="0">
               <input type="hidden" id="_amount" name="amount" value="0">
               <input type="image" src="https://www.paypalobjects.com/th_TH/TH/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - วิธีชำระเงินแบบออนไลน์ที่ปลอดภัยกว่าและง่ายกว่า!">
             </form>
           </div>
-          <a href="#" class="btn btn-success btn-lg pull-right" id="btnregister"><i class="fa fa-check"></i> สั่งซื้อหนังสือ</a>
+          <a href="#" class="btn btn-success btn-lg pull-right" id="btnregister"><i class="fa fa-check"></i> สั่งซื้อคอร์สนี้</a>
         </div>
       </div>
-      <a href="{% url 'book:detail' slug=book.slug %}" style="text-decoration:none"><i class="fa fa-chevron-left"></i> กลับหน้าที่แล้ว</a>
+      <a href="{% url 'online:detail' slug=video.slug %}" style="text-decoration:none"><i class="fa fa-chevron-left"></i> กลับหน้าที่แล้ว</a>
     </div>
   </div>
 </div>
 <script type="text/javascript">
   function calPrice() {
-    var qty = parseInt($('#qty').val(), 10);
+    var qty = 1;
     var price = parseFloat($('#price').val() || '0');
     return qty * price;
   }
@@ -138,17 +116,13 @@
     $('input[name="name"]').focus();
     displayPrice();
 
-    $('#qty').on('change', function () {
-      displayPrice();
-    });
-
     $('#paypalform').on('submit', function () {
-      $('#_qty').val($('#qty').val());
+      $('#_qty').val(1);
       $('#_amount').val($('#price').val());
     });
 
     $('#btnregister').on('click', function () {
-      $('#unit').val($('#qty').val());
+      $('#unit').val(1);
       $('#checkoutform').submit();
     });
   });
