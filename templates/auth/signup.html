@@ -1,0 +1,25 @@
+{% extends "master/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Sign up</h2>
+  <form method="post" action="{% url 'signup' %}?next={{request.GET.next}}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Sign up</button>
+
+    {% comment %} <div class="container">
+        <h2>Sign up</h2>
+      <form method="post">
+        <input type='hidden' name='csrfmiddlewaretoken' value='rmlUnE2Pbq0FngwYovL2y8tHaL4OstLaYw76SIQPuZWP8cnXULdaDDB2Zsdt7LjD' />
+        <p><label for="id_username">Username:</label> <input type="text" name="username" autofocus required id="id_username" maxlength="150" /> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p>
+    <p><label for="id_password1">Password:</label> <input type="password" name="password1" required id="id_password1" /></p>
+    <p><label for="id_password2">Password confirmation:</label> <input type="password" name="password2" required id="id_password2" /> <span class="helptext">Enter the same password as before, for verification.</span></p>
+        <button type="submit">Sign up</button>
+      </form>
+    </div> {% endcomment %}
+
+  </form>
+</div>
+{% endblock %}

@@ -25,7 +25,7 @@
                 <a href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}" class="btn btn-danger btn-block btn-lg"><i class="fa fa-google"></i> Google Login</a>
               </div>
               <div class="caption">
-                <a href="#">สมาชิกใหม่? ลงทะเบียนที่นี่</a>
+                <a href="{% url 'signup' %}?menu={{menu}}&next={{request.path}}">สมาชิกใหม่? ลงทะเบียนที่นี่</a>
               </div>
             </div>
           </div>
