@@ -17,15 +17,15 @@
                 <input type="password" name="password" id="password" class="form-control input-lg" placeholder="รหัสผ่าน" required>
               </div>
               <div class="form-group">
-                <button type="submit" id="btnlogin" class="btn btn-success btn-lg btn-block">Login</button>
+                <button type="submit" id="btnlogin" class="btn btn-success btn-lg btn-block">ล็อกอิน</button>
               </div>
               <div class="center-text">หรือ</div>
               <div class="form-group">
-                <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}" class="btn btn-primary btn-block btn-lg"><i class="fa fa-facebook"></i> Facebook Login</a>
-                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}" class="btn btn-danger btn-block btn-lg"><i class="fa fa-google"></i> Google Login</a>
+                <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}" class="btn btn-primary btn-block btn-lg"><i class="fa fa-facebook"></i> Facebook ล็อกอิน</a>
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}" class="btn btn-danger btn-block btn-lg"><i class="fa fa-google"></i> Google ล็อกอิน</a>
               </div>
               <div class="caption">
-                <a href="{% url 'signup' %}?menu={{menu}}&next={{request.path}}">สมาชิกใหม่? ลงทะเบียนที่นี่</a>
+                <a href="{% url 'signup' %}?menu={{menu}}&next={{request.path}}" style="text-decoration:none">สมาชิกใหม่? ลงทะเบียนที่นี่</a>
               </div>
             </div>
           </div>

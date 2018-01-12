@@ -141,8 +141,8 @@ body {
   background-size: cover;
 }
 
-.subnav-blog {
-  background: url('/static/img/paralax/blog.jpg') no-repeat;
+.subnav-signup {
+  background: url('/static/img/paralax/signup.jpg') no-repeat;
   background-size: cover;
 }
 
@@ -745,7 +745,8 @@ section .lead {
 }
 
 .modal-content .input-lg {
-  font-size: 15px;
+  font-size: 14px;
+  height: 42px;
   border-radius: 0;
 }
 
@@ -754,8 +755,8 @@ section .lead {
 }
 
 .modal-content .btn-lg {
-  font-size: 15px;
-  font-family: 'THSarabunNew', sans-serif;
+  font-size: 17px;
+  font-family: 'rsu_regular', sans-serif;
 }
 
 .modal-content .caption {
