@@ -3,10 +3,18 @@ from django.shortcuts import render
 from django.contrib import auth
 from django.http import HttpResponse
 
+from course.models import CourseOpen
+from online.models import Video
+
 
 def index(request):
+    courses = CourseOpen.objects.all()
+    videos = Video.objects.filter(published=True).order_by('-premium')
+
     return render(request, 'index.html', {
         'menu': 'index',
+        'courses': courses,
+        'videos': videos,
     })
 
 

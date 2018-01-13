@@ -330,6 +330,27 @@ footer .social-link .info:hover > a {
 }
 
 /**/
+.feature {
+  margin: 20px 0 40px 0;
+}
+
+.feature .icon {
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  color: #d31a1a;
+  border: 1px solid #d31a1a;
+  border-radius: 50%;
+  padding: 15px 0;
+}
+
+.feature h3 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/**/
 #subnav {
   margin: 0;
 }
@@ -1117,4 +1138,32 @@ section .lead {
 
 #img-slider img {
   height: 200px;
+}
+
+/**/
+.cust-logo {
+  text-align: center;
+}
+
+.cust-logo li {
+  display: inline-block;
+  padding: 15px;
+  width: 20%;
+  min-width: 240px;
+}
+
+.cust-logo li img {
+  width: 100%;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.cust-logo li > a {
+  display: block;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.cust-logo li > a:hover {
+  border-color: #01b1d7;
 }

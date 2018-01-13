@@ -1,6 +1,22 @@
 {% extends "master/base.html" %}
 {% load humanize widget_tweaks %}
 
+{% block title %}หนังสือ | แอพโค้ด เทคโนโลยี จำกัด | สถาบันสอนเขียนโปรแกรม เรียนทำโมบายแอพ เรียนเว็บแอพลิเคชั่น เรียน IOT บริการอบรมทั้งในและนอกสถานที่{% endblock %}
+
+{% block meta %}
+<meta name="description" content="แอพโค้ด เทคโนโลยี, หนังสือ, คู่มือ, E-Book, หนังสือ{{ book.category.name }}, {{ book.name }}, {{ book.title }}">
+<meta name="author" content="AppCode Technology Ltd., {{ book.teacher.name }}">
+<meta name="keywords" content="หนังสือ, หนังสือเขียนโปรแกรม, คู่มือเขียนโปรแกรม, หนังสือคอมพิวเตอร์, E-Book, {{ book.tags.all|join:', ' }}">
+<meta property="fb:app_id" content="520613538309239"/>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ book.name }}" />
+<meta property="og:description" content="{{ book.title }}" />
+<meta property="og:url" content="http://{{ request.get_host }}{{ request.get_full_path }}" />
+{% if book.image %}
+<meta property="og:image" content="http://{{ request.get_host }}{{ book.image.url }}" />
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <div id="subnav" class="subnav-book">
   <div class="subnav-inner">
@@ -25,7 +41,7 @@
             <tr>
               <th width="15%">รหัสสินค้า</th>
               <th>ชื่อสินค้า</th>
-              <th>จำนวน</th>
+              <th width="15%">จำนวน</th>
               <th style="text-align:right" width="18%">ราคา/หน่วย</th>
             </tr>
           </thead>

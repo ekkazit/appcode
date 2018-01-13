@@ -1,4 +1,5 @@
 {% extends "master/base.html" %}
+{% load humanize %}
 
 {% block content %}
 <div id="banner">
@@ -65,9 +66,9 @@
   </div>
 </div>
 <!--./banner-->
-<section class="light">
+<section>
+  <h1>บริการของเรา</h1>
   <div class="container">
-    <h1>บริการของเรา</h1>
     <div class="row">
       <div class="col-md-4">
         <div class="feature">
@@ -97,6 +98,88 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+<section>
+  <h1 style="margin-bottom:40px">คอร์สที่เปิดอบรม</h1>
+  <div class="container">
+    {% for c in courses %}
+    <div class="course-list">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="{{ c.image.url }}" alt="{{ c.name }}" class="img-responsive wow fadeInLeft">
+        </div>
+        <div class="col-md-8">
+          <h3><a href="{% url 'course:detail' slug=c.slug %}?id={{ request.GET.id }}">{{ c.name }}</a></h3>
+          <div class="subtext">
+            <div class="pull-left">
+              <span><strong>รหัส:</strong> {{ c.code }}</span>
+              <span><strong>ระยะเวลา:</strong> {{ c.hours }} ชั่วโมง ({{ c.days }} วัน)</span>
+            </div>
+            <div class="pricing">
+              <strong>{{ c.price|floatformat:0|intcomma }} ฿</strong>
+            </div>
+          </div>
+          <div class="preview">{{ c.title|truncatewords:15 }}</div>
+          <div class="footer">
+            <a href="{% url 'course:detail' slug=c.slug %}?id={{ request.GET.id }}" class="btn btn-success">ดูรายละเอียด</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+      <h4>ไม่พบข้อมูลคอร์สอบรม</h4>
+    {% endfor %}
+  </div>
+</section>
+<section>
+  <h1 style="margin-bottom:40px">ตารางการอบรม</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1"><iframe src="https://calendar.google.com/calendar/embed?src=bl78784ggrshopnhp6sesg4o74%40group.calendar.google.com&ctz=Asia%2FBangkok" style="border: 0" width="100%" height="550" frameborder="0" scrolling="no"></iframe></div>
+    </div>
+  </div>
+</section>
+<section>
+  <h1 style="margin-bottom:40px">คอร์สออนไลน์ล่าสุด</h1>
+  <div class="container">
+    {% for v in videos %}
+    {% if forloop.first %}<div class="row">{% endif %}
+    <div class="col-md-3">
+      <div class="online">
+        <div class="image">
+          {% if v.premium %}
+            <span class="label label-warning">แนะนำ</span>
+          {% endif %}
+          {% if v.image %}
+            <img src="{{ v.image.url }}" alt="{{ v.name }}">
+          {% endif %}
+        </div>
+        <div class="content">
+          <h4><a href="{% url 'online:detail' slug=v.slug %}">{{ v.name }}</a></h4>
+          <div class="preview">{{ v.title }}</div>
+          <span><i class="fa fa-book"></i> {{ v.lessons }} บทเรียน</span>
+          <div class="footer">
+            <a href="{% url 'online:detail' slug=v.slug %}" class="btn btn-success pull-left">เข้าสู่บทเรียน</a>
+            <span class="pricing {% if v.price > 0 %}price-green{% else%}price-red{% endif %}">
+              {% if v.price > 0 %}{{ v.price|floatformat:0|intcomma }} ฿{% else %}เรียนฟรี{% endif %}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
+  {% endfor %}
+  </div>
+</section>
+<section>
+  <h1 style="margin-bottom:40px">หน่วยงานที่ฝึกอบรมกับเรา</h1>
+  <div class="container">
+    <ul class="cust-logo">
+      <li><a href="https://www.egat.co.th/" target="_blank"><img src="/static/img/customer/egat.png"></a></li>
+      <li><a href="http://www.kongkiat.com/" target="_blank"><img src="/static/img/customer/kongkiat.png"></a></li>
+    </ul>
   </div>
 </section>
 {% endblock %}
