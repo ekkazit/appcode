@@ -810,3 +810,13 @@ section .lead {
   color: #d40c0c;
   margin-left: -2px;
 }
+
+/**/
+#img-slider {
+  margin-bottom: 40px;
+  background-color: #eee;
+}
+
+#img-slider img {
+  height: 200px;
+}

@@ -9,6 +9,10 @@ def get_course_file(instance, filename):
     return 'upload/course/%s/%s' % (instance.code, filename)
 
 
+def get_course_outline_file(instance, filename):
+    return 'upload/course/%s/outline/%s' % (instance.code, filename)
+
+
 def get_course_slider_file(instance, filename):
     return 'upload/course/%s/slides/%s' % (instance.course.code, filename)
 
@@ -26,6 +30,7 @@ class Course(models.Model):
     days = models.IntegerField(default=0)
     hours = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=15, decimal_places=2, default=0)
+    outline = models.FileField(upload_to=get_course_outline_file, null=True, blank=True)
     image = models.FileField(upload_to=get_course_file, null=True, blank=True)
     published = models.BooleanField(default=True)
     tags = TaggableManager()
