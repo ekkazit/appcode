@@ -4,38 +4,61 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{% block title %}AppCode | Technology{% endblock title %}</title>
+  <meta http-equiv="Content-Language" content="th">
+  <meta name="google-site-verification" content="J8ykIvRFreI1vRKWTyLUaUrJF2ow4dAAGwS12Tj3pKw" />
+  {% block meta %}
+  <meta name="description" content="แอพโค้ด เทคโนโลยี, AppCode Technology Co.,Ltd., อบรมเขียนโปรแกรม, เรียนทำโมบายแอพ, เรียนเว็บแอพลิเคชั่น, ซอฟท์แวร์บนคลาวด์, พัฒนาซอฟท์แวร์, Dev Training, Software on Cloud, System Integration, หนังสือคอมพิวเตอร์, หนังสือเขียนโปรแกรม">
+  <meta name="author" content="AppCode Technology Ltd., Thailand">
+  <meta name="keywords" content="คอร์สอบรม, เรียนทำเว็บ, เรียนเขียนโปรแกรม, สถาบันสอน, สถาบันอบรม, สอนทำเว็บไซต์, หลักสูตรปฏิบัติ, อบรมคอมพิวเตอร์, อบรมเขียนโปรแกรม, หลักสูตรเขียนโปรแกรม, หนังสือคอมพิวเตอร์, E-Book เขียนโปรแกรม, คู่มือเขียนโปรแกรม, หนังสือ PDF, เรียน PHP, อบรม PHP, หลักสูตร PHP, หนังสือ PHP, E-Book PHP, เรียน Laravel, อบรม Laravel, หลักสูตร Laravel, หนังสือ Laravel, E-Book Laravel, เรียน Ionic, อบรม Ionic, หลักสูตร Ionic, หนังสือ Ionic, E-Book Ionic, สอน PHP and MySQL, สอน Laravel, สอน Ionic, ปรึกษาโปรแกรม, ปรึกษาระบบงานขาย, ปรึกษาโปรเจ็กต์ทำเว็บ, รับทำเว็บ, รับออกแบบเว็บไซต์, ออกแบบโปรแกรม, รับทำโปรเจ็กต์, ปรึกษาเขียนโปรแกรม, แอพพลิเคชั่น Android, แอพพลิเคชั่น IOS, POSPAX, โปรแกรม Point of Sale, ซอฟท์แวร์บนคลาวด์, พัฒนาซอฟท์แวร์">
+  {% endblock %}
+  <title>{% block title %}แอพโค้ด เทคโนโลยี จำกัด | สถาบันสอนเขียนโปรแกรม เรียนทำโมบายแอพ เรียนเว็บแอพลิเคชั่น เรียน IOT บริการอบรมทั้งในและนอกสถานที่{% endblock %}</title>
   <link type="text/css" rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
   <link type="text/css" rel="stylesheet" href="/static/vendor/font-awesome/css/font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="/static/vendor/animate/animate.min.css">
   <link type="text/css" rel="stylesheet" href="/static/css/font.css">
   <link type="text/css" rel="stylesheet" href="/static/css/base.css">
   <script type="text/javascript" src="/static/js/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript" src="/static/vendor/wow/wow.min.js"></script>
   {% block script %}{% endblock %}
 </head>
 <body>
   {% include "_partial/login.html" %}
   <nav class="navbar navbar-default navbar-static-top" id="header">
     <div class="container">
-      <ul class="nav navbar-nav navbar-right">
-        {% if user.is_authenticated %}
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.email|default:user.username }} <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="navbar-form">
+              <ul class="social-h">
+                <li><i class="fa fa-phone"></i> 083-082-6392</li>
+                <li><i class="fa fa-envelope"></i> <a href="mailto:appcodetraining@gmail.com">appcodetraining@gmail.com</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.email|default:user.username }} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <div class="navbar-form">
+                    <a href="{% url 'logout' %}" class="btn btn-danger btn-block" style="width:150px"><i class="fa fa-sign-out"></i> ออกจากระบบ</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            {% else %}
             <li>
               <div class="navbar-form">
-                <a href="{% url 'logout' %}" class="btn btn-danger btn-block" style="width:150px"><i class="fa fa-sign-out"></i> ออกจากระบบ</a>
+                <a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in"></i> เข้าสู่ระบบ</a>
               </div>
             </li>
+            {% endif %}
           </ul>
-        </li>
-        {% else %}
-        <li>
-          <div class="navbar-form">
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in"></i> เข้าสู่ระบบ</a>
-          </div>
-        </li>
-        {% endif %}
-      </ul>
+        </div>
+      </div>
     </div>
   </nav>
   <nav class="navbar navbar-default navbar-static-top" id="nav">
@@ -47,6 +70,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a href="{% url 'app:index' %}" class="navbar-brand">
+          <img src="/static/img/logo.png" alt="AppCode Technology" title="บริษัท แอพโค้ด เทคโนโลยี จำกัด">
+        </a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -61,33 +87,93 @@
     </div>
   </nav>
   {% block content %}{% endblock %}
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="footer-heading">
+            <h3><span>ติดต่อเรา</span></h3>
+            <table>
+              <tr>
+                <td colspan="2">
+                  <strong>บริษัท แอพโค้ด เทคโนโลยี จำกัด</strong>
+                </td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-map-marker"></i></td>
+                <td>
+                  หมู่บ้านเบญจทรัพย์ เลขที่ 199/554<br>หน้าซอย 29 ม.4 ต.รังสิต  อ.ธัญบุรี จ.ปทุมธานี 12110
+                </td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-phone"></i></td>
+                <td>โทร: 02-003-3554<br>คุณเอกสิทธิ์ 083-082-6392<br>คุณพงพันธ์ 089-126-3688</td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-envelope"></i></td>
+                <td>Email: <a href="mailto:appcodetraining@gmail.com">appcodetraining@gmail.com</a></td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
+                  <!-- Histats.com  START  (aync)-->
+                  <script type="text/javascript">var _Hasync= _Hasync|| [];
+                  _Hasync.push(['Histats.start', '1,3984088,4,511,95,18,00010000']);
+                  _Hasync.push(['Histats.fasi', '1']);
+                  _Hasync.push(['Histats.track_hits', '']);
+                  (function() {
+                  var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+                  hs.src = ('//s10.histats.com/js15_as.js');
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+                  })();</script>
+                  <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?3984088&101" alt="free tracking" border="0"></a></noscript>
+                  <!-- Histats.com  END  -->
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="footer-heading">
+            <h3><span>ติดตาม</span></h3>
+            <p>ติดตามข่าวสาร กิจกรรม และวีดีโอการอบรมได้ที่</p>
+            <ul class="social-link">
+              <li class="blue"><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li class="red"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+              <li class="info"><a href="#"><i class="fa fa-bitbucket"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="footer-heading">
+            <h3><span>เมนูหลัก</span></h3>
+            <ul class="menu-link">
+              <li><a href="{% url 'course:index' %}">หลักสูตรอบรม</a></li>
+              <li><a href="{% url 'book:index' %}">หนังสือ</a></li>
+              <li><a href="{% url 'app:jobs' %}">ร่วมงานกับเรา</a></li>
+              <li><a href="{% url 'app:about' %}">เกี่ยวกับเรา</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--/.footer-->
+  <div id="sub-footer">
+    <div class="container">&copy; 2018 Designed by AppCode Technology</div>
+  </div>
+  <!--./sub-footer-->
+  <a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+  <!--./scroll up-->
   <script type="text/javascript" src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $('#loginModal').on('shown.bs.modal', function () {
-        $('#username').focus();
-      });
-
-      $('#loginform').on('submit', function () {
-        $('#btnlogin').html('กำลังเข้าสู่ระบบ...');
-        $.ajax({
-          type: 'POST',
-          url: '{% url "app:login" %}',
-          data: $(this).serialize(),
-          success: function(response) {
-            if(response.result === 'success') {
-              window.location.href = '{{request.path}}';
-            } else {
-              alert('อีเมลหรือรหัสผ่านของท่านไม่ถูกต้อง!');
-              $('#username').val('');
-              $('#password').val('');
-              $('#btnlogin').html('Login');
-            }
-          }
-        });
-        return false;
-      });
-    });
+  <script type="text/javascript" src="/static/app/base.js"></script>
+  <!-- google analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112006743-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-112006743-1');
   </script>
 </body>
 </html>
