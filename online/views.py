@@ -9,7 +9,9 @@ from taggit.models import Tag
 from app.models import Account
 from .models import Video, VideoRegister
 from .forms import VideoRegisterForm
+import jwt
 
+TOKEN_SECRET = '-vg-hkwxsojvp'
 
 def index(request):
     videos = Video.objects.filter(published=True).order_by('-premium')
@@ -36,16 +38,6 @@ def detail(request, slug):
     ids = video.tags.values_list('id', flat=True)
     related_videos = Video.objects.filter(tags__in=ids).distinct().exclude(id=video.id)[:5]
 
-    # check video authenticated
-    is_locked = False
-    if video.price:
-        is_locked = True
-
-    if request.user.is_authenticated():
-        register = VideoRegister.objects.filter(email=request.user.email, video_id=video.id).first()
-        if register and register.authorized:
-            is_locked = False
-
     # check video auto playing
     autoplay = False
     player= None
@@ -53,11 +45,26 @@ def detail(request, slug):
     active_pl = -1
     if pl:
         autoplay = True
-        player= video.videoplaylist_set.filter(id=int(pl)).first()
+        player = video.videoplaylist_set.filter(id=int(pl)).first()
     else:
         player = video.videoplaylist_set.first()
         if player:
             active_pl = player.id
+
+    # check video authenticated
+    is_locked = False
+    if video.price:
+        is_locked = True
+
+    # video token authentications
+    token = None
+    if request.user.is_authenticated():
+        register = VideoRegister.objects.filter(email=request.user.email, video_id=video.id).first()
+        if register and register.authorized:
+            is_locked = False
+        token = jwt.encode({'user_id': request.user.id, 'is_lock': is_locked, 'is_preview': player.preview}, TOKEN_SECRET, algorithm='HS256')
+    else:
+        token = jwt.encode({'is_lock': is_locked, 'is_preview': player.preview}, TOKEN_SECRET, algorithm='HS256')
 
     return render(request, 'online/detail.html', {
         'menu': 'online',
@@ -67,6 +74,7 @@ def detail(request, slug):
         'autoplay': autoplay,
         'active_pl': active_pl,
         'is_locked': is_locked,
+        'token': token,
     })
 
 
