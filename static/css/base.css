@@ -21,9 +21,9 @@ h3 {
 
 body {
   color: #555;
-  line-height: 1.8em;
+  line-height: 1.6em;
   background-color: #eee;
-  font-family: 'THSarabunNew', sans-serif;
+  /* font-family: 'THSarabunNew', sans-serif; */
 }
 
 /**/
@@ -994,7 +994,7 @@ section .lead {
 
 .book h3 {
   margin: 10px 0;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .book h3 a {
