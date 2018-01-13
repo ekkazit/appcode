@@ -8,12 +8,12 @@ from online.models import Video
 
 
 def index(request):
-    courses = CourseOpen.objects.all()
+    course_opens = CourseOpen.objects.all()
     videos = Video.objects.filter(published=True).order_by('-premium')
 
     return render(request, 'index.html', {
         'menu': 'index',
-        'courses': courses,
+        'course_opens': course_opens,
         'videos': videos,
     })
 

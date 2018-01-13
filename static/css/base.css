@@ -21,9 +21,10 @@ h3 {
 
 body {
   color: #555;
-  line-height: 1.6em;
   background-color: #eee;
-  /* font-family: 'THSarabunNew', sans-serif; */
+  /* line-height: 1.8em;
+  font-family: 'THSarabunNew', sans-serif; */
+  line-height: 1.6em;
 }
 
 /**/
@@ -567,9 +568,9 @@ section .lead {
 }
 
 .course-list .footer .hilight {
-  padding: 2px 10px;
+  padding: 5px 10px;
   font-size: 18px;
-  background-color: #ddd;
+  background-color: #fffec5;
 }
 
 /**/

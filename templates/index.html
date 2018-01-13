@@ -103,32 +103,32 @@
 <section>
   <h1 style="margin-bottom:40px">คอร์สที่เปิดอบรม</h1>
   <div class="container">
-    {% for c in courses %}
+    {% regroup course_opens by course as course_open_list %}
+    {% for c in course_open_list %}
     <div class="course-list">
       <div class="row">
         <div class="col-md-4">
-          <img src="{{ c.image.url }}" alt="{{ c.name }}" class="img-responsive wow fadeInLeft">
+          <img src="{{c.grouper.image.url}}" alt="{c.grouper.name}}" class="img-responsive wow fadeInLeft">
         </div>
         <div class="col-md-8">
-          <h3><a href="{% url 'course:detail' slug=c.slug %}?id={{ request.GET.id }}">{{ c.name }}</a></h3>
+          <h3><a href="{% url 'course:detail' slug=c.grouper.slug %}?id={{ request.GET.id }}">{{c.grouper.name}}</a></h3>
           <div class="subtext">
             <div class="pull-left">
-              <span><strong>รหัส:</strong> {{ c.code }}</span>
-              <span><strong>ระยะเวลา:</strong> {{ c.hours }} ชั่วโมง ({{ c.days }} วัน)</span>
+              <span><strong>รหัส:</strong> {{c.grouper.code}}</span>
+              <span><strong>ระยะเวลา:</strong> {{c.grouper.hours}} ชั่วโมง ({{c.grouper.days}} วัน)</span>
             </div>
             <div class="pricing">
-              <strong>{{ c.price|floatformat:0|intcomma }} ฿</strong>
+              <strong>{{ c.list.0.price|floatformat:0|intcomma }} ฿</strong>
             </div>
           </div>
-          <div class="preview">{{ c.title|truncatewords:15 }}</div>
+          <div class="preview">{{ c.grouper.title|truncatewords:15 }}</div>
           <div class="footer">
-            <a href="{% url 'course:detail' slug=c.slug %}?id={{ request.GET.id }}" class="btn btn-success">ดูรายละเอียด</a>
+            <div class="hilight pull-left">{{ c.list.0.times }}</div>
+            <a href="{% url 'course:detail' slug=c.grouper.slug %}?id={{ request.GET.id }}" class="btn btn-success pull-right">ดูรายละเอียด</a>
           </div>
         </div>
       </div>
     </div>
-    {% empty %}
-      <h4>ไม่พบข้อมูลคอร์สอบรม</h4>
     {% endfor %}
   </div>
 </section>
