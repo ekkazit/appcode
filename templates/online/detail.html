@@ -138,7 +138,7 @@
           <h3>ป้ายกำกับ</h3>
           <ul class="tags">
             {% for t in video.tags.all %}
-            <li><a href="#">{{ t.name }}</a></li>
+            <li><a href="{% url 'online:index' %}?tagid={{ t.id }}">{{ t.name }}</a></li>
             {% endfor %}
           </ul>
         </div>

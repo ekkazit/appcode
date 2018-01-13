@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 
+from taggit.models import Tag
 from app.models import Account
 from .models import Book, Register
 from .forms import RegisterForm
@@ -12,17 +13,29 @@ from .forms import RegisterForm
 
 def index(request):
     books = Book.objects.filter(published=True)
+
+    # filter by tags
+    tag = None
+    tagid = None
+    if request.GET.get('tagid'):
+        tagid = int(request.GET.get('tagid'))
+        tag = get_object_or_404(Tag, id=tagid)
+        books = books.filter(tags=tagid)
+
     return render(request, 'book/index.html', {
         'menu': 'book',
         'books': books,
+        'tag': tag,
     })
 
 
 def detail(request, slug):
     book = get_object_or_404(Book, slug=slug)
+    accounts = Account.objects.all()
+
+    # get related books
     ids = book.tags.values_list('id', flat=True)
     related_books = Book.objects.filter(tags__in=ids).distinct().exclude(id=book.id)[:5]
-    accounts = Account.objects.all()
 
     return render(request, 'book/detail.html', {
         'menu': 'book',
@@ -39,10 +52,12 @@ def checkout(request, slug):
     if request.method == 'POST':
         form = RegisterForm(request.POST, use_required_attribute=False)
         if form.is_valid():
+            # save book register
             register = form.save(commit=False)
             register.book_id = request.POST.get('id')
             register.save()
 
+            # send by email
             banks = ''
             for b in accounts:
                 banks += u"""%s บัญชี <strong>%s</strong> %s %s %s<br>""" % (b.bank, b.acc_code, b.acc_type, b.branch, b.acc_name)

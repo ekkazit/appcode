@@ -152,7 +152,7 @@
           <h3>ป้ายกำกับ</h3>
           <ul class="tags">
             {% for t in course.tags.all %}
-            <li><a href="#">{{ t.name }}</a></li>
+            <li><a href="{% url 'course:index' %}?tagid={{ t.id }}">{{ t.name }}</a></li>
             {% endfor %}
           </ul>
         </div>

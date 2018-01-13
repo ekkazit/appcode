@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 
+from taggit.models import Tag
 from app.models import Account
 from .models import Video, VideoRegister
 from .forms import VideoRegisterForm
@@ -13,17 +14,29 @@ from .forms import VideoRegisterForm
 def index(request):
     videos = Video.objects.filter(published=True).order_by('-premium')
 
+    # filter by tags
+    tag = None
+    tagid = None
+    if request.GET.get('tagid'):
+        tagid = int(request.GET.get('tagid'))
+        tag = get_object_or_404(Tag, id=tagid)
+        videos = videos.filter(tags=tagid)
+
     return render(request, 'online/index.html', {
         'menu': 'online',
         'videos': videos,
+        'tag': tag,
     })
 
 
 def detail(request, slug):
     video = get_object_or_404(Video, slug=slug)
+
+    # get related videos
     ids = video.tags.values_list('id', flat=True)
     related_videos = Video.objects.filter(tags__in=ids).distinct().exclude(id=video.id)[:5]
 
+    # check video authenticated
     is_locked = False
     if video.price:
         is_locked = True
@@ -33,6 +46,7 @@ def detail(request, slug):
         if register and register.authorized:
             is_locked = False
 
+    # check video auto playing
     autoplay = False
     player= None
     pl = request.GET.get('pl')
@@ -63,10 +77,12 @@ def checkout(request, slug):
     if request.method == 'POST':
         form = VideoRegisterForm(request.POST, use_required_attribute=False)
         if form.is_valid():
+            # save video register
             register = form.save(commit=False)
             register.video_id = request.POST.get('id')
             register.save()
 
+            # send by email
             banks = ''
             for b in accounts:
                 banks += u"""%s บัญชี <strong>%s</strong> %s %s %s<br>""" % (b.bank, b.acc_code, b.acc_type, b.branch, b.acc_name)

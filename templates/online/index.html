@@ -20,6 +20,9 @@
         <div class="lead">เรียนได้ทันที ทุกที่ ทุกเวลา สามารถเรียนซ้ำได้แบบไม่จำกัด มีให้เลือกทั้งคอร์สพรีเมี่ยม และคอร์สที่เรียนได้ฟรี</div>
       </div>
     </div>
+    {% if tag %}
+      <h3>Tag : {{ tag.name }}</h3>
+    {% endif %}
     {% for v in videos %}
       {% if forloop.first %}<div class="row">{% endif %}
       <div class="col-md-3">

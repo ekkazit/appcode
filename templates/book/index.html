@@ -20,6 +20,9 @@
         <div class="lead">หนังสือคุณภาพจากทีมงาน เนื้อหาแน่น คำอธิบายครบ เขียนจากประสบการณ์ใช้งานจริง พร้อมเวิร์คชอฟท้ายเล่ม</div>
       </div>
     </div>
+    {% if tag %}
+      <h3>Tag : {{ tag.name }}</h3>
+    {% endif %}
     {% for b in books %}
       {% if forloop.first %}<div class="row">{% endif %}
       <div class="col-md-6">
