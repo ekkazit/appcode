@@ -22,8 +22,9 @@ h3 {
 body {
   color: #555;
   background-color: #eee;
-  line-height: 1.8em;
-  font-family: 'THSarabunNew', sans-serif;
+  /* line-height: 1.8em;
+  font-family: 'THSarabunNew', sans-serif; */
+  line-height: 1.6em;
 }
 
 /**/
@@ -89,7 +90,7 @@ body {
   padding: 15px 0;
 }
 
-#header a {
+#header .nav-link {
   color: #999;
   text-decoration: none;
 }
