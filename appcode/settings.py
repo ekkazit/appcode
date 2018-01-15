@@ -6,7 +6,7 @@ SECRET_KEY = 'vyf7wco6ij_x8+e2s^s76ey*_waryke#k4dqgobjma%o(ni!*1'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -73,10 +73,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'appcode.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'appcode',
+        'USER': 'appcode',
+        'PASSWORD': 'appcode1q2w3e4r',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
