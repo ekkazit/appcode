@@ -23,8 +23,10 @@ urlpatterns = [
     url(r'^robots.txt$', lambda r: HttpResponse('User-agent: *\nDisallow: /', content_type='text/plain')),
 ]
 
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 admin.site.site_title = 'AppCode'
 admin.site.site_header = 'AppCode Technology'
