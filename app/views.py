@@ -4,17 +4,20 @@ from django.contrib import auth
 from django.http import HttpResponse
 
 from course.models import CourseOpen
+from book.models import Book
 from online.models import Video
 
 
 def index(request):
-    course_opens = CourseOpen.objects.all()
-    videos = Video.objects.filter(published=True).order_by('-premium')
+    course_opens = CourseOpen.objects.all().order_by('id')
+    videos = Video.objects.filter(published=True).order_by('-premium', 'id')
+    books = Book.objects.filter(published=True).order_by('id')
 
     return render(request, 'index.html', {
         'menu': 'index',
         'course_opens': course_opens,
         'videos': videos,
+        'books': books,
     })
 
 

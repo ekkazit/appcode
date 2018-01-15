@@ -26,7 +26,7 @@ from .forms import (
 
 def index(request):
     categories = Category.objects.all()
-    courses = Course.objects.all()
+    courses = Course.objects.all().order_by('code')
 
     # filter by category
     if request.GET.get('id'):
@@ -50,7 +50,7 @@ def index(request):
 
 def detail(request, slug):
     course = get_object_or_404(Course, slug=slug)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     # get related courses
     ids = course.tags.values_list('id', flat=True)
@@ -66,7 +66,7 @@ def detail(request, slug):
 
 def booking(request, slug):
     course = get_object_or_404(Course, slug=slug)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     if request.method == 'POST':
         form = CourseBookingForm(request.POST, use_required_attribute=False)
@@ -129,7 +129,7 @@ def quotation(request, slug):
 def register(request, slug, open_id):
     course = get_object_or_404(Course, slug=slug)
     course_open = get_object_or_404(CourseOpen, id=open_id)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     if request.method == 'POST':
         form = CourseRegisterForm(request.POST, use_required_attribute=False)
@@ -165,7 +165,7 @@ def register(request, slug, open_id):
 
 def complete(request, slug):
     course = get_object_or_404(Course, slug=slug)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     return render(request, 'course/complete.html', {
         'menu': 'course',

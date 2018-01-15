@@ -57,7 +57,7 @@
               <tr><th colspan="5">{{ pl.grouper }}</th></tr>
             </thead>
             <tbody>
-              {% for c in pl.list %}
+              {% for c in pl.list|dictsort:"no" %}
               <tr class="{% if request.GET.pl|add:0 == c.id or active_pl == c.id %}active{% endif %}">
                 <td>{{ c.title }}</td>
                 <td>{% if c.preview %}<span class="label label-info">ตัวอย่าง</span>{% endif %}</td>

@@ -105,10 +105,10 @@
   <div class="container">
     {% regroup course_opens by course as course_open_list %}
     {% for c in course_open_list %}
-    <div class="course-list">
+    <div class="course-list  wow fadeInLeft">
       <div class="row">
         <div class="col-md-4">
-          <img src="{{c.grouper.image.url}}" alt="{c.grouper.name}}" class="img-responsive wow fadeInLeft">
+          <img src="{{c.grouper.image.url}}" alt="{c.grouper.name}}" class="img-responsive">
         </div>
         <div class="col-md-8">
           <h3><a href="{% url 'course:detail' slug=c.grouper.slug %}?id={{ request.GET.id }}">{{c.grouper.name}}</a></h3>
@@ -124,7 +124,7 @@
           <div class="preview">{{ c.grouper.title|truncatewords:15 }}</div>
           <div class="footer">
             <div class="hilight pull-left">{{ c.list.0.times }}</div>
-            <a href="{% url 'course:detail' slug=c.grouper.slug %}?id={{ request.GET.id }}" class="btn btn-success pull-right">ดูรายละเอียด</a>
+            <a href="{% url 'course:detail' slug=c.grouper.slug %}?id={{ request.GET.id }}" class="btn btn-success pull-right">ลงทะเบียน</a>
           </div>
         </div>
       </div>
@@ -133,13 +133,13 @@
   </div>
 </section>
 <section>
-  <h1 style="margin-bottom:40px">ตารางการอบรม</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1"><iframe src="https://calendar.google.com/calendar/embed?src=bl78784ggrshopnhp6sesg4o74%40group.calendar.google.com&ctz=Asia%2FBangkok" style="border: 0" width="100%" height="550" frameborder="0" scrolling="no"></iframe></div>
+    <h1 style="margin-bottom:40px">ตารางการอบรม</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1"><iframe src="https://calendar.google.com/calendar/embed?src=bl78784ggrshopnhp6sesg4o74%40group.calendar.google.com&ctz=Asia%2FBangkok" style="border: 0" width="100%" height="550" frameborder="0" scrolling="no"></iframe></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 <section>
   <h1 style="margin-bottom:40px">คอร์สออนไลน์ล่าสุด</h1>
   <div class="container">

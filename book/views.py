@@ -12,7 +12,7 @@ from .forms import RegisterForm
 
 
 def index(request):
-    books = Book.objects.filter(published=True)
+    books = Book.objects.filter(published=True).order_by('id')
 
     # filter by tags
     tag = None
@@ -31,7 +31,7 @@ def index(request):
 
 def detail(request, slug):
     book = get_object_or_404(Book, slug=slug)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     # get related books
     ids = book.tags.values_list('id', flat=True)
@@ -47,7 +47,7 @@ def detail(request, slug):
 
 def checkout(request, slug):
     book = get_object_or_404(Book, slug=slug)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     if request.method == 'POST':
         form = RegisterForm(request.POST, use_required_attribute=False)
@@ -84,7 +84,7 @@ def finish(request, slug):
     regid = request.GET.get('regid')
     book = get_object_or_404(Book, slug=slug)
     register = Register.objects.get(pk=regid)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     return render(request, 'book/finish.html', {
         'menu': 'book',

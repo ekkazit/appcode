@@ -80,7 +80,7 @@ def detail(request, slug):
 
 def checkout(request, slug):
     video = get_object_or_404(Video, slug=slug)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     if request.method == 'POST':
         form = VideoRegisterForm(request.POST, use_required_attribute=False)
@@ -117,7 +117,7 @@ def finish(request, slug):
     regid = request.GET.get('regid')
     video = get_object_or_404(Video, slug=slug)
     register = VideoRegister.objects.get(pk=regid)
-    accounts = Account.objects.all()
+    accounts = Account.objects.all().order_by('bank')
 
     return render(request, 'online/finish.html', {
         'menu': 'online',
