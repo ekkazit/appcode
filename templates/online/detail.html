@@ -51,7 +51,7 @@
         <h3>จำนวน {{ video.lessons }} บทเรียน</h3>
         <div class="panel panel-default">
           <table class="table table-playlist">
-          {% regroup video.videoplaylist_set.all by chapter as playlists %}
+          {% regroup video.videoplaylist_set.all|dictsort:"no" by chapter as playlists %}
           {% for pl in playlists %}
             <thead>
               <tr><th colspan="5">{{ pl.grouper }}</th></tr>
