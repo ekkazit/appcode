@@ -32,11 +32,11 @@
 </div>
 <div id="course">
   <div class="container">
-    <h1>{{ course.name }}</h1>
     <div class="row">
+      <h1>{{ course.name }}</h1>
       <div class="col-md-8">
         {% if course.title %}
-        <span><i class="fa fa-quote-left"></i> {{ course.title }}</span>
+          <span><i class="fa fa-quote-left"></i> {{ course.title }}</span>
         {% endif %}
         <!-- ./ course title -->
         {% if course.outline %}

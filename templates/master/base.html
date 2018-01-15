@@ -148,9 +148,9 @@
           <div class="footer-heading">
             <h3><span>บริการของเรา</span></h3>
             <ul class="menu-link">
-              <li><a href="http://demo.pospax.com">POSPAX</a></li>
-              <li><a href="http://www.otopstore.com">OtopStore</a></li>
-              <li><a href="http://www.codeexcellent.com/">CodeExcellent</a></li>
+              <li><a href="http://www.otopstore.com">ร้าน OTOPstore</a></li>
+              <li><a href="http://demo.pospax.com">ระบบ PosPax</a></li>
+              <li><a href="http://www.codeexcellent.com/">เว็บไซต์ CodeExcellent</a></li>
             </ul>
           </div>
         </div>
@@ -166,6 +166,34 @@
   <!--./scroll up-->
   <script type="text/javascript" src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/static/app/base.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      // login
+      $('#loginModal').on('shown.bs.modal', function () {
+        $('#username').focus();
+      });
+
+      $('#loginform').on('submit', function () {
+        $('#btnlogin').html('กำลังเข้าสู่ระบบ...');
+        $.ajax({
+          type: 'POST',
+          url: '{% url "app:login" %}',
+          data: $(this).serialize(),
+          success: function(response) {
+            if(response.result === 'success') {
+              window.location.href = '{{request.path}}';
+            } else {
+              alert('อีเมลหรือรหัสผ่านของท่านไม่ถูกต้อง!');
+              $('#username').val('');
+              $('#password').val('');
+              $('#btnlogin').html('Login');
+            }
+          }
+        });
+        return false;
+      });
+    });
+  </script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112006743-1"></script>
   <script>

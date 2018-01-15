@@ -47,29 +47,4 @@
     var $animatingElems = $(e.relatedTarget).find("[data-animation^='animated']");
     doAnimations($animatingElems);
   });
-
-  // login
-  $('#loginModal').on('shown.bs.modal', function () {
-    $('#username').focus();
-  });
-
-  $('#loginform').on('submit', function () {
-    $('#btnlogin').html('กำลังเข้าสู่ระบบ...');
-    $.ajax({
-      type: 'POST',
-      url: '{% url "app:login" %}',
-      data: $(this).serialize(),
-      success: function(response) {
-        if(response.result === 'success') {
-          window.location.href = '{{request.path}}';
-        } else {
-          alert('อีเมลหรือรหัสผ่านของท่านไม่ถูกต้อง!');
-          $('#username').val('');
-          $('#password').val('');
-          $('#btnlogin').html('Login');
-        }
-      }
-    });
-    return false;
-  });
 })(jQuery);

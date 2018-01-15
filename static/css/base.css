@@ -82,7 +82,8 @@ body {
   margin: 0;
   line-height: 32px;
   border: none;
-  padding: 5px 0;
+  padding: 0;
+  background-color: #f7f7f7;
   border-bottom: 1px solid #e7e7e7;
 }
 
@@ -705,8 +706,8 @@ section .lead {
 
 #course .profile img {
   float: left;
-  width: 100px;
-  height: 100%;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   border: 2px solid #ccc;
   margin-right: 15px;
@@ -1145,8 +1146,6 @@ section .lead {
   background-color: #eee;
 }
 
-
-
 /**/
 .cust-logo {
   text-align: center;
@@ -1161,7 +1160,6 @@ section .lead {
 
 .cust-logo li img {
   width: 100%;
-  image-rendering: -webkit-optimize-contrast;
 }
 
 .cust-logo li > a {
