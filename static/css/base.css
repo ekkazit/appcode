@@ -21,7 +21,7 @@ h3 {
 
 body {
   color: #555;
-  /* background-color: #eee; */
+  background-color: #eee;
   line-height: 1.8em;
   font-family: 'THSarabunNew', sans-serif;
   /* line-height: 1.6em; */
@@ -82,6 +82,7 @@ body {
   margin: 0;
   border: none;
   padding: 5px 0;
+  line-height: 32px;
   border-bottom: 1px solid #e7e7e7;
 }
 
