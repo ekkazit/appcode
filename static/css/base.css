@@ -80,6 +80,7 @@ body {
 
 #header {
   margin: 0;
+  line-height: 32px;
   border: none;
   padding: 5px 0;
   border-bottom: 1px solid #e7e7e7;
