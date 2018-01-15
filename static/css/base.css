@@ -22,9 +22,9 @@ h3 {
 body {
   color: #555;
   background-color: #eee;
-  /* line-height: 1.8em;
-  font-family: 'THSarabunNew', sans-serif; */
-  line-height: 1.6em;
+  line-height: 1.8em;
+  font-family: 'THSarabunNew', sans-serif;
+  /* line-height: 1.6em; */
 }
 
 /**/
@@ -94,6 +94,12 @@ body {
 #header .nav-link {
   color: #999;
   text-decoration: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 520px) {
+  #header {
+    display: none;
+  }
 }
 
 /**/
@@ -1134,13 +1140,12 @@ section .lead {
 
 /**/
 #img-slider {
+  width: 100%;
   margin-bottom: 40px;
   background-color: #eee;
 }
 
-#img-slider img {
-  height: 200px;
-}
+
 
 /**/
 .cust-logo {

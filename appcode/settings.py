@@ -73,23 +73,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'appcode.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'appcode',
-        'USER': 'appcode',
-        'PASSWORD': 'appcode1q2w3e4r',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'appcode',
+#         'USER': 'appcode',
+#         'PASSWORD': 'appcode1q2w3e4r',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Bangkok'
@@ -98,10 +98,10 @@ USE_L10N = True
 USE_TZ = False
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, 'static'),
-# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, 'static'),
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
