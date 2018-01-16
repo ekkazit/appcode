@@ -48,7 +48,7 @@
       </div>
       <div class="col-md-4">
         {% if course.courseslider_set.count %}
-        <div id="img-slider">
+        <div id="img-slider" style="margin-top:60px">
           <div id="carousel-generic" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
             <ol class="carousel-indicators">
               {% for c in course.courseslider_set.all|dictsort:"name" %}
